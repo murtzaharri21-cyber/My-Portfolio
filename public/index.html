@@ -1,0 +1,1643 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Ghulam Murtaza | 3D Full-Stack Developer & Top-Rated Market Strategist
+    </title>
+
+    <!-- Meta & SEO -->
+    <meta
+      name="description"
+      content="3D Interactive Portfolio of Ghulam Murtaza - Computer Science Graduate, Full Stack MERN/MEAN Developer, Top-Rated Fiverr Seller, and HSK-4 Certified Chinese Speaker."
+    />
+    <meta
+      name="keywords"
+      content="Ghulam Murtaza, Full Stack Developer, Node.js, React, MERN, MEAN, Market Research, Fiverr Top Rated, HSK-4 Chinese, Islamabad Pakistan"
+    />
+    <meta name="author" content="Ghulam Murtaza" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Ghulam Murtaza | 3D Interactive Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Full Stack Developer & Top-Rated Market Research Consultant. Explore interactive 3D WebGL experiences and real-world case studies."
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  </head>
+  <body>
+    <!-- 3D WebGL Canvas Layer -->
+    <div id="webgl-container"></div>
+    <div class="canvas-vignette"></div>
+    <div class="cyber-grid-overlay"></div>
+
+    <!-- Content Layer -->
+    <div class="content-wrapper">
+      <!-- FLOATING HUD NAVIGATION -->
+      <header>
+        <nav class="navbar" id="navbar">
+          <a href="#hero" class="logo-brand">
+            <div class="logo-badge">GM</div>
+            <div class="logo-text">MURTAZA<span>.3D</span></div>
+          </a>
+
+          <ul class="nav-links">
+            <li><a href="#hero" class="active" data-i18n="navHome">Home</a></li>
+            <li><a href="#about" data-i18n="navAbout">About & Journey</a></li>
+            <li><a href="#skills" data-i18n="navSkills">Skills Matrix</a></li>
+            <li>
+              <a href="#experience" data-i18n="navExperience">Experience</a>
+            </li>
+            <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
+            <li>
+              <a href="#terminal" data-i18n="navTerminal">CLI Terminal</a>
+            </li>
+            <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <!-- Audio Synthesizer Button -->
+            <button
+              class="hud-btn"
+              id="audio-toggle-btn"
+              title="Toggle Sci-Fi Synthesizer Sound FX"
+            >
+              <i class="fa-solid fa-volume-high"></i>
+              <span class="sound-waves" style="display: none">
+                <span></span><span></span><span></span><span></span>
+              </span>
+            </button>
+
+            <!-- Language Selector -->
+            <div class="lang-selector">
+              <button class="lang-btn" id="lang-btn">
+                <i class="fa-solid fa-globe"></i>
+                <span id="current-lang-label">EN</span>
+                <i
+                  class="fa-solid fa-chevron-down"
+                  style="font-size: 0.7rem"
+                ></i>
+              </button>
+              <div class="lang-menu" id="lang-menu">
+                <button class="lang-option active" data-lang="en">
+                  <span>🇬🇧</span> English
+                </button>
+                <button class="lang-option" data-lang="zh">
+                  <span>🇨🇳</span> 中文 (HSK-4)
+                </button>
+                <button class="lang-option" data-lang="ur">
+                  <span>🇵🇰</span> اردو (Urdu)
+                </button>
+              </div>
+            </div>
+
+            <!-- Hire Me CTA -->
+            <a href="#contact" class="btn-hire">
+              <i class="fa-solid fa-bolt"></i>
+              <span data-i18n="btnHire">Hire Me</span>
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <!-- FLOATING 3D SCENE CONTROLLER HUD -->
+      <div class="scene-controller-hud" id="scene-hud">
+        <div class="hud-label">
+          <i class="fa-solid fa-cube"></i>
+          <span>3D MATRIX</span>
+        </div>
+        <div class="scene-modes">
+          <button
+            class="scene-btn active"
+            data-mode="nexus"
+            title="Holographic Nexus Core"
+          >
+            <i class="fa-solid fa-atom"></i> Nexus Core
+          </button>
+          <button
+            class="scene-btn"
+            data-mode="globe"
+            title="Interactive Global Reach Globe"
+          >
+            <i class="fa-solid fa-earth-americas"></i> Global Reach
+          </button>
+          <button class="scene-btn" data-mode="cube" title="Rubik's Tech Cube">
+            <i class="fa-solid fa-cubes"></i> Tech Cube
+          </button>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <main>
+        <!-- 1. HERO SECTION -->
+        <section class="hero-section" id="hero">
+          <div class="container">
+            <div class="hero-grid">
+              <div class="hero-content">
+                <div class="hero-badge-pill">
+                  <span class="status-dot"></span>
+                  <span data-i18n="heroStatus"
+                    >AVAILABLE FOR GLOBAL PROJECTS & CONSULTING</span
+                  >
+                </div>
+
+                <h1 class="hero-title">
+                  Ghulam <span class="gradient-text">Murtaza</span>
+                </h1>
+
+                <div class="hero-typewriter-wrapper">
+                  <i
+                    class="fa-solid fa-terminal"
+                    style="font-size: 1.1rem; color: var(--neon-cyan)"
+                  ></i>
+                  <span id="typewriter-text"
+                    >Full Stack MERN/MEAN Developer</span
+                  >
+                  <span class="typewriter-cursor"></span>
+                </div>
+
+                <p class="hero-description" data-i18n="heroDesc">
+                  Computer Science graduate and Top-Rated Consultant with 5+
+                  years building scalable web architectures and delivering
+                  data-driven market intelligence for 100+ clients across North
+                  America, Europe, and Asia.
+                </p>
+
+                <!-- Quick Stats Grid -->
+                <div class="hero-stats-row">
+                  <div class="stat-item-box">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label" data-i18n="statExp"
+                      >5+ Years Exp</span
+                    >
+                  </div>
+                  <div class="stat-item-box">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label" data-i18n="statClients"
+                      >100+ Clients</span
+                    >
+                  </div>
+                  <div class="stat-item-box">
+                    <span class="stat-number">★ 5.0</span>
+                    <span class="stat-label" data-i18n="statFiverr"
+                      >Top-Rated Seller</span
+                    >
+                  </div>
+                  <div class="stat-item-box">
+                    <span class="stat-number">HSK-4</span>
+                    <span class="stat-label" data-i18n="statHsk"
+                      >Fluent Mandarin</span
+                    >
+                  </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="hero-cta-group">
+                  <a href="#projects" class="btn-primary">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span data-i18n="btnExploreProjects">Explore 3D Work</span>
+                  </a>
+                  <a href="#resume" class="btn-secondary open-resume-btn">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span data-i18n="btnResume">View / Download CV</span>
+                  </a>
+                  <a href="#contact" class="btn-secondary">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span data-i18n="btnGetInTouch">Get In Touch</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Hero 3D Portal Telemetry Card -->
+              <div class="hero-3d-card tilt-card">
+                <div class="card-header-status">
+                  <div class="card-title-mini">
+                    <i class="fa-solid fa-satellite-dish"></i> TELEMETRY ACTIVE
+                  </div>
+                  <span class="status-dot"></span>
+                </div>
+
+                <div class="tech-hologram-visual">
+                  <div class="holo-orbit-circle holo-orbit-1"></div>
+                  <div class="holo-orbit-circle holo-orbit-2"></div>
+                  <div class="holo-orbit-circle holo-orbit-3"></div>
+
+                  <div class="holo-center-avatar">
+                    <i class="fa-solid fa-code"></i>
+                  </div>
+
+                  <div class="holo-tag-floating tag-top-left">
+                    <i class="fa-brands fa-node-js"></i> Node.js & React
+                  </div>
+                  <div class="holo-tag-floating tag-top-right">
+                    <i class="fa-solid fa-star"></i> Fiverr Top-Rated
+                  </div>
+                  <div class="holo-tag-floating tag-bottom-left">
+                    <i class="fa-solid fa-language"></i> HSK-4 Chinese
+                  </div>
+                  <div class="holo-tag-floating tag-bottom-right">
+                    <i class="fa-solid fa-chart-line"></i> Market Strategy
+                  </div>
+                </div>
+
+                <div class="card-footer-details">
+                  <div class="info-row">
+                    <span class="info-label">Base Location</span>
+                    <span class="info-val"
+                      ><i
+                        class="fa-solid fa-location-dot"
+                        style="color: var(--neon-emerald)"
+                      ></i>
+                      Islamabad, PK</span
+                    >
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Education</span>
+                    <span class="info-val"
+                      ><i
+                        class="fa-solid fa-graduation-cap"
+                        style="color: var(--neon-cyan)"
+                      ></i>
+                      BScs (Sarhad University)</span
+                    >
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label">Direct Communication</span>
+                    <span class="info-val"
+                      ><i
+                        class="fa-brands fa-whatsapp"
+                        style="color: #25d366"
+                      ></i>
+                      +92 326 0586026</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. ABOUT & GLOBAL PROFILE -->
+        <section class="section" id="about">
+          <div class="container">
+            <div class="section-header">
+              <div class="section-badge" data-i18n="aboutBadge">
+                PROFILE & GLOBAL HORIZONS
+              </div>
+              <h2 class="section-title" data-i18n="aboutTitle">
+                Engineering Full-Stack Web Power with Market Intelligence
+              </h2>
+              <p class="section-subtitle" data-i18n="aboutSubtitle">
+                Bridging the gap between robust software engineering and
+                high-impact business strategy
+              </p>
+            </div>
+
+            <div class="about-grid">
+              <div class="about-card tilt-card">
+                <p class="about-lead">
+                  I am a Computer Science graduate, Full-Stack Software
+                  Engineer, and Top-Rated Freelancer with over 5 years of
+                  experience delivering end-to-end digital solutions and market
+                  strategies.
+                </p>
+                <ul class="about-features-list">
+                  <li>
+                    <i class="fa-solid fa-circle-check feature-check-icon"></i>
+                    <span
+                      ><strong>Full-Stack Mastery:</strong> Architecting
+                      responsive, high-performance web applications using
+                      Node.js, Express, React, MongoDB (MERN / MEAN stack), and
+                      interactive 3D WebGL.</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check feature-check-icon"></i>
+                    <span
+                      ><strong>Top-Rated Seller on Fiverr:</strong> Successfully
+                      delivered market research, business plans, and competitor
+                      analysis to 100+ global clients worldwide with 100% 5-star
+                      feedback.</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check feature-check-icon"></i>
+                    <span
+                      ><strong>Government Certified:</strong> NAVTTC Certified
+                      MEAN & MERN Stack JavaScript Developer from Adan Institute
+                      of Technology, Islamabad.</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check feature-check-icon"></i>
+                    <span
+                      ><strong>Cross-Border Strategic Consulting:</strong>
+                      Proven expertise conducting market feasibility,
+                      TAM/SAM/SOM sizing, and GTM execution for startups and
+                      global enterprises.</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Trilingual & Cross-Cultural Card -->
+              <div class="trilingual-card tilt-card">
+                <div class="card-title-bar">
+                  <h3>
+                    <i
+                      class="fa-solid fa-earth-asia"
+                      style="color: var(--neon-cyan)"
+                    ></i>
+                    Trilingual & Global Fluency
+                  </h3>
+                  <span class="lang-pill-badge">HSK-4 Certified</span>
+                </div>
+
+                <p
+                  style="
+                    color: var(--text-secondary);
+                    font-size: 0.9rem;
+                    line-height: 1.6;
+                  "
+                >
+                  Having studied at Hexi University (China), Beijing University
+                  Online, and NUML, I facilitate frictionless cross-cultural
+                  collaboration, bilingual project execution, and international
+                  business negotiations.
+                </p>
+
+                <div class="language-pills-grid">
+                  <div class="lang-pill-box">
+                    <div class="lang-pill-header">
+                      <span class="lang-pill-name">🇵🇰 Urdu</span>
+                      <span class="lang-pill-badge">Native Speaker (100%)</span>
+                    </div>
+                    <div class="lang-bar-track">
+                      <div class="lang-bar-fill" style="width: 100%"></div>
+                    </div>
+                  </div>
+
+                  <div class="lang-pill-box">
+                    <div class="lang-pill-header">
+                      <span class="lang-pill-name">🇬🇧 English</span>
+                      <span class="lang-pill-badge"
+                        >Professional Working (95%)</span
+                      >
+                    </div>
+                    <div class="lang-bar-track">
+                      <div class="lang-bar-fill" style="width: 95%"></div>
+                    </div>
+                  </div>
+
+                  <div class="lang-pill-box">
+                    <div class="lang-pill-header">
+                      <span class="lang-pill-name"
+                        >🇨🇳 Chinese (Mandarin - 普通话)</span
+                      >
+                      <span class="lang-pill-badge">HSK-4 Certified (90%)</span>
+                    </div>
+                    <div class="lang-bar-track">
+                      <div class="lang-bar-fill" style="width: 90%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. GLOBAL JOURNEY & EDUCATION TIMELINE -->
+        <section
+          class="section"
+          id="journey"
+          style="background: rgba(8, 14, 32, 0.4)"
+        >
+          <div class="container">
+            <div class="section-header">
+              <div class="section-badge">ACADEMIC & PROFESSIONAL JOURNEY</div>
+              <h2 class="section-title">Education & Milestones</h2>
+              <p class="section-subtitle">
+                A global academic path spanning Computer Science, Chinese
+                Studies, and Full-Stack Engineering
+              </p>
+            </div>
+
+            <div class="timeline-track">
+              <!-- Item 1 -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-card">
+                  <div class="timeline-year">
+                    <i class="fa-solid fa-calendar-days"></i> 2021 – 2025
+                  </div>
+                  <h3 class="timeline-title">
+                    Bachelor of Science in Computer Science (BScs)
+                  </h3>
+                  <div class="timeline-institution">
+                    <i class="fa-solid fa-university"></i> Sarhad University
+                    Islamabad
+                  </div>
+                  <p class="timeline-desc">
+                    Specialized in software engineering, database management
+                    systems, data structures, algorithms, and scalable web
+                    architectures.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-card">
+                  <div class="timeline-year">
+                    <i class="fa-solid fa-calendar-days"></i> 2023
+                  </div>
+                  <h3 class="timeline-title">
+                    NAVTTC MEAN & MERN Stack JavaScript Certification
+                  </h3>
+                  <div class="timeline-institution">
+                    <i class="fa-solid fa-award"></i> Adan Institute of
+                    Technology | Government of Pakistan
+                  </div>
+                  <p class="timeline-desc">
+                    Intensive full stack JavaScript engineering program focusing
+                    on MongoDB, Express.js, React.js, Angular, Node.js, and
+                    RESTful microservices.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-card">
+                  <div class="timeline-year">
+                    <i class="fa-solid fa-calendar-days"></i> 2020 – 2021
+                  </div>
+                  <h3 class="timeline-title">Chinese Language Studies</h3>
+                  <div class="timeline-institution">
+                    <i class="fa-solid fa-language"></i> NUML University
+                    (National University of Modern Languages)
+                  </div>
+                  <p class="timeline-desc">
+                    Advanced commercial and conversational Mandarin Chinese
+                    linguistics, culminating in official HSK-4 certification.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-card">
+                  <div class="timeline-year">
+                    <i class="fa-solid fa-calendar-days"></i> 2019 – 2020
+                  </div>
+                  <h3 class="timeline-title">
+                    Bachelor of Science in Computer Science – Online
+                  </h3>
+                  <div class="timeline-institution">
+                    <i class="fa-solid fa-laptop-code"></i> Beijing University
+                    (Peking University Online)
+                  </div>
+                  <p class="timeline-desc">
+                    Foundational software systems, computational thinking, and
+                    modern programming paradigms.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content-card">
+                  <div class="timeline-year">
+                    <i class="fa-solid fa-calendar-days"></i> 2018 – 2019
+                  </div>
+                  <h3 class="timeline-title">
+                    Chinese Literature & Cultural Immersion
+                  </h3>
+                  <div class="timeline-institution">
+                    <i class="fa-solid fa-landmark"></i> Hexi University, Gansu,
+                    China
+                  </div>
+                  <p class="timeline-desc">
+                    On-campus cultural and literary studies in China,
+                    establishing deep cross-cultural fluency and Sino-foreign
+                    business communication.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. SKILLS MATRIX & CAPABILITIES -->
+        <section class="section" id="skills">
+          <div class="container">
+            <div class="section-header">
+              <div class="section-badge" data-i18n="skillsBadge">
+                TECHNICAL & STRATEGIC ARSENAL
+              </div>
+              <h2 class="section-title" data-i18n="skillsTitle">
+                Multidisciplinary Capabilities
+              </h2>
+              <p class="section-subtitle">
+                Full-stack web engineering harmonized with data-driven market
+                intelligence
+              </p>
+            </div>
+
+            <!-- Skills Filter Tabs -->
+            <div class="skills-tabs-nav">
+              <button class="skill-tab-btn active" data-category="all">
+                <i class="fa-solid fa-cubes"></i> All Capabilities
+              </button>
+              <button class="skill-tab-btn" data-category="development">
+                <i class="fa-solid fa-code"></i> Full-Stack Development
+              </button>
+              <button class="skill-tab-btn" data-category="business">
+                <i class="fa-solid fa-chart-line"></i> Market Research &
+                Strategy
+              </button>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="skills-grid" id="skills-grid">
+              <!-- Skill 1 -->
+              <div class="skill-card tilt-card" data-category="development">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-brands fa-node-js"></i>
+                    </div>
+                    <span class="skill-name">Node.js & Express</span>
+                  </div>
+                  <span class="skill-percent">95%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 95%"></div>
+                </div>
+              </div>
+
+              <!-- Skill 2 -->
+              <div class="skill-card tilt-card" data-category="development">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-brands fa-react"></i>
+                    </div>
+                    <span class="skill-name">React.js & Redux</span>
+                  </div>
+                  <span class="skill-percent">92%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 92%"></div>
+                </div>
+              </div>
+
+              <!-- Skill 3 -->
+              <div class="skill-card tilt-card" data-category="development">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-brands fa-js"></i>
+                    </div>
+                    <span class="skill-name"
+                      >JavaScript (ES6+) / TypeScript</span
+                    >
+                  </div>
+                  <span class="skill-percent">95%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 95%"></div>
+                </div>
+              </div>
+
+              <!-- Skill 4 -->
+              <div class="skill-card tilt-card" data-category="development">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-solid fa-database"></i>
+                    </div>
+                    <span class="skill-name">MongoDB & Mongoose</span>
+                  </div>
+                  <span class="skill-percent">88%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 88%"></div>
+                </div>
+              </div>
+
+              <!-- Skill 5 -->
+              <div class="skill-card tilt-card" data-category="development">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <span class="skill-name">MEAN & MERN Architecture</span>
+                  </div>
+                  <span class="skill-percent">90%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 90%"></div>
+                </div>
+              </div>
+
+              <!-- Skill 6 -->
+              <div class="skill-card tilt-card" data-category="development">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-solid fa-cube"></i>
+                    </div>
+                    <span class="skill-name">Three.js & 3D WebGL</span>
+                  </div>
+                  <span class="skill-percent">85%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 85%"></div>
+                </div>
+              </div>
+
+              <!-- Skill 7 -->
+              <div class="skill-card tilt-card" data-category="business">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <span class="skill-name">Market Sizing (TAM/SAM/SOM)</span>
+                  </div>
+                  <span class="skill-percent">98%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 98%"></div>
+                </div>
+              </div>
+
+              <!-- Skill 8 -->
+              <div class="skill-card tilt-card" data-category="business">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-solid fa-chess"></i>
+                    </div>
+                    <span class="skill-name"
+                      >Competitive Benchmarking & SWOT</span
+                    >
+                  </div>
+                  <span class="skill-percent">96%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 96%"></div>
+                </div>
+              </div>
+
+              <!-- Skill 9 -->
+              <div class="skill-card tilt-card" data-category="business">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <span class="skill-name"
+                      >Business Plans & Financial Modeling</span
+                    >
+                  </div>
+                  <span class="skill-percent">94%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 94%"></div>
+                </div>
+              </div>
+
+              <!-- Skill 10 -->
+              <div class="skill-card tilt-card" data-category="business">
+                <div class="skill-card-top">
+                  <div class="skill-info">
+                    <div class="skill-icon-wrap">
+                      <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <span class="skill-name">Go-to-Market (GTM) Strategy</span>
+                  </div>
+                  <span class="skill-percent">92%</span>
+                </div>
+                <div class="skill-progress-bar">
+                  <div class="skill-progress-fill" style="width: 92%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. WORK EXPERIENCE & FREELANCE TRACK RECORD -->
+        <section
+          class="section"
+          id="experience"
+          style="background: rgba(8, 14, 32, 0.4)"
+        >
+          <div class="container">
+            <div class="section-header">
+              <div class="section-badge" data-i18n="expBadge">
+                CAREER & FREELANCE MILESTONES
+              </div>
+              <h2 class="section-title" data-i18n="expTitle">
+                Proven Track Record
+              </h2>
+              <p class="section-subtitle">
+                Delivering high-stakes projects for startups and enterprises
+                worldwide
+              </p>
+            </div>
+
+            <div class="experience-grid">
+              <!-- Experience 1 -->
+              <div class="experience-card tilt-card">
+                <div class="exp-header">
+                  <div>
+                    <h3 class="exp-role">
+                      Market Researcher & Business Consultant
+                    </h3>
+                    <div class="exp-platform">
+                      <i class="fa-solid fa-globe"></i> Fiverr (Top-Rated
+                      Seller)
+                    </div>
+                  </div>
+                  <span class="exp-badge-status">★ Top-Rated Seller</span>
+                </div>
+
+                <div class="exp-period">
+                  <i class="fa-regular fa-clock"></i> Since 2020 – Present |
+                  Remote International
+                </div>
+
+                <ul class="exp-list">
+                  <li>
+                    <i class="fa-solid fa-caret-right"></i>
+                    <span
+                      >Delivered in-depth market research, financial business
+                      plans, and competitive landscape analysis to
+                      <strong>100+ clients globally</strong>.</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-caret-right"></i>
+                    <span
+                      >Supported high-growth startups and established SMEs with
+                      go-to-market strategies and data-driven business model
+                      development.</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-caret-right"></i>
+                    <span
+                      >Maintained 100% 5-star Top-Rated Seller status through
+                      consistent, high-quality, on-time delivery across North
+                      America, Europe, and Asia.</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Experience 2 -->
+              <div class="experience-card tilt-card">
+                <div class="exp-header">
+                  <div>
+                    <h3 class="exp-role">
+                      Market Researcher & Business Planner
+                    </h3>
+                    <div class="exp-platform">
+                      <i class="fa-solid fa-briefcase"></i> Upwork
+                    </div>
+                  </div>
+                  <span
+                    class="exp-badge-status"
+                    style="
+                      border-color: var(--neon-cyan);
+                      color: var(--neon-cyan);
+                      background: rgba(0, 240, 255, 0.1);
+                    "
+                    >Expert Consultant</span
+                  >
+                </div>
+
+                <div class="exp-period">
+                  <i class="fa-regular fa-clock"></i> 2022 – 2026 | Remote
+                  Global
+                </div>
+
+                <ul class="exp-list">
+                  <li>
+                    <i class="fa-solid fa-caret-right"></i>
+                    <span
+                      >Provided strategic market consulting, financial
+                      feasibility assessments, and data-driven business plans
+                      across diverse industries.</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-caret-right"></i>
+                    <span
+                      >Delivered actionable industry intelligence, competitor
+                      benchmarking, pricing strategies, and execution
+                      roadmaps.</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Experience 3 -->
+              <div class="experience-card tilt-card">
+                <div class="exp-header">
+                  <div>
+                    <h3 class="exp-role">Full-Stack Web Developer</h3>
+                    <div class="exp-platform">
+                      <i class="fa-solid fa-code-branch"></i> Independent &
+                      Contract
+                    </div>
+                  </div>
+                  <span
+                    class="exp-badge-status"
+                    style="
+                      border-color: var(--neon-violet);
+                      color: var(--neon-violet);
+                      background: rgba(139, 92, 246, 0.1);
+                    "
+                    >MERN & MEAN Stack</span
+                  >
+                </div>
+
+                <div class="exp-period">
+                  <i class="fa-regular fa-clock"></i> 2021 – Present | Hybrid &
+                  Remote
+                </div>
+
+                <ul class="exp-list">
+                  <li>
+                    <i class="fa-solid fa-caret-right"></i>
+                    <span
+                      >Architected and deployed responsive full-stack
+                      applications with Node.js, Express, React, and
+                      MongoDB.</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-caret-right"></i>
+                    <span
+                      >Designed interactive 3D WebGL interfaces, custom RESTful
+                      APIs, and secure authentication systems.</span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. FEATURED PROJECTS SHOWCASE -->
+        <section class="section" id="projects">
+          <div class="container">
+            <div class="section-header">
+              <div class="section-badge" data-i18n="projectsBadge">
+                PORTFOLIO & LIVE CASE STUDIES
+              </div>
+              <h2 class="section-title" data-i18n="projectsTitle">
+                Featured 3D & Web Applications
+              </h2>
+              <p class="section-subtitle">
+                High-performance digital products engineered for modern
+                businesses
+              </p>
+            </div>
+
+            <div class="projects-grid">
+              <!-- Project 0 -->
+              <div class="project-card tilt-card">
+                <div class="project-visual-header">
+                  <div class="project-pattern-bg"></div>
+                  <i class="fa-solid fa-store project-icon-huge"></i>
+                  <div class="project-category-tag">
+                    Full Stack & E-Commerce
+                  </div>
+                </div>
+                <div class="project-body">
+                  <h3 class="project-title">Hunza Crafts</h3>
+                  <div class="project-subtitle">
+                    E-Commerce Platform for Artisan & Organic Products
+                  </div>
+                  <p class="project-description">
+                    Live e-commerce platform connecting farmers and artisans in
+                    Hunza Valley directly with customers through a modern
+                    product catalog, shopping cart, wishlist, and admin
+                    dashboard.
+                  </p>
+                  <div class="project-metrics-pill">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Live production store shipping across Pakistan</span>
+                  </div>
+                  <div class="project-tags">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Supabase</span>
+                    <span class="tech-tag">Vercel</span>
+                  </div>
+                  <div class="project-footer-btns">
+                    <a
+                      href="https://hunzacrafts.vercel.app/"
+                      target="_blank"
+                      class="project-btn project-btn-demo"
+                    >
+                      <i class="fa-solid fa-play"></i> Live Demo
+                    </a>
+                    <a
+                      href="https://github.com/murtzaharri21-cyber"
+                      target="_blank"
+                      class="project-btn project-btn-code"
+                    >
+                      <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 1 -->
+              <div class="project-card tilt-card">
+                <div class="project-visual-header">
+                  <div class="project-pattern-bg"></div>
+                  <i
+                    class="fa-solid fa-chart-line-up project-icon-huge fa-chart-pie"
+                  ></i>
+                  <div class="project-category-tag">Full Stack & Analytics</div>
+                </div>
+                <div class="project-body">
+                  <h3 class="project-title">
+                    OmniMarket 3D AI Intelligence Suite
+                  </h3>
+                  <div class="project-subtitle">
+                    Interactive 3D Data Visualizer & Competitor Analytics
+                  </div>
+                  <p class="project-description">
+                    Enterprise-grade market intelligence platform featuring
+                    interactive 3D multidimensional market cluster
+                    visualization, automated competitor scraping, and
+                    TAM/SAM/SOM calculators.
+                  </p>
+                  <div class="project-metrics-pill">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Over 40+ corporate clients benchmarked</span>
+                  </div>
+                  <div class="project-tags">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Three.js</span>
+                    <span class="tech-tag">MongoDB</span>
+                  </div>
+                  <div class="project-footer-btns">
+                    <a href="#contact" class="project-btn project-btn-demo">
+                      <i class="fa-solid fa-play"></i> Live Demo
+                    </a>
+                    <a
+                      href="https://github.com/murtzaharri21-cyber"
+                      target="_blank"
+                      class="project-btn project-btn-code"
+                    >
+                      <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 2 -->
+              <div class="project-card tilt-card">
+                <div class="project-visual-header">
+                  <div class="project-pattern-bg"></div>
+                  <i class="fa-solid fa-cart-shopping project-icon-huge"></i>
+                  <div class="project-category-tag">MERN Stack</div>
+                </div>
+                <div class="project-body">
+                  <h3 class="project-title">
+                    HyperTrade Global Commerce Engine
+                  </h3>
+                  <div class="project-subtitle">
+                    Cross-Border E-Commerce with Real-Time Inventory
+                  </div>
+                  <p class="project-description">
+                    Full MERN stack global commerce engine with trilingual
+                    support (English, Chinese, Urdu), instant currency
+                    conversion, JWT authentication, and administrative inventory
+                    telemetry.
+                  </p>
+                  <div class="project-metrics-pill">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Sub-50ms query latency, 10k+ catalog items</span>
+                  </div>
+                  <div class="project-tags">
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Tailwind</span>
+                  </div>
+                  <div class="project-footer-btns">
+                    <a href="#contact" class="project-btn project-btn-demo">
+                      <i class="fa-solid fa-play"></i> Live Demo
+                    </a>
+                    <a
+                      href="https://github.com/murtzaharri21-cyber"
+                      target="_blank"
+                      class="project-btn project-btn-code"
+                    >
+                      <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 3 -->
+              <div class="project-card tilt-card">
+                <div class="project-visual-header">
+                  <div class="project-pattern-bg"></div>
+                  <i class="fa-solid fa-handshake-simple project-icon-huge"></i>
+                  <div class="project-category-tag">Strategy & Tech</div>
+                </div>
+                <div class="project-body">
+                  <h3 class="project-title">
+                    SinoConnect B2B Consultation Hub
+                  </h3>
+                  <div class="project-subtitle">
+                    Cross-Cultural Supply Chain & Sourcing Portal
+                  </div>
+                  <p class="project-description">
+                    Specialized platform connecting Western startups with
+                    Chinese manufacturers, featuring automated bilingual inquiry
+                    routing, contract generation, and market risk radar.
+                  </p>
+                  <div class="project-metrics-pill">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Facilitated $1.2M+ cross-border deals</span>
+                  </div>
+                  <div class="project-tags">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">HSK-4 Mandarin</span>
+                    <span class="tech-tag">REST APIs</span>
+                  </div>
+                  <div class="project-footer-btns">
+                    <a href="#contact" class="project-btn project-btn-demo">
+                      <i class="fa-solid fa-play"></i> Live Demo
+                    </a>
+                    <a
+                      href="https://github.com/murtzaharri21-cyber"
+                      target="_blank"
+                      class="project-btn project-btn-code"
+                    >
+                      <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. INTERACTIVE SCI-FI TERMINAL / CLI -->
+        <section
+          class="section"
+          id="terminal"
+          style="background: rgba(8, 14, 32, 0.4)"
+        >
+          <div class="container">
+            <div class="section-header">
+              <div class="section-badge" data-i18n="terminalBadge">
+                INTERACTIVE COMMAND CENTER
+              </div>
+              <h2 class="section-title" data-i18n="terminalTitle">
+                Terminal Emulator
+              </h2>
+              <p class="section-subtitle">
+                Execute real-time commands to query background, certifications,
+                and 3D scenes
+              </p>
+            </div>
+
+            <div class="terminal-container">
+              <div class="terminal-header">
+                <div class="terminal-buttons">
+                  <span class="t-btn close"></span>
+                  <span class="t-btn minimize"></span>
+                  <span class="t-btn expand"></span>
+                </div>
+                <div class="terminal-title">
+                  <i class="fa-solid fa-terminal"></i>
+                  <span>nexus-core@ghulam-murtaza: ~</span>
+                </div>
+                <div class="terminal-badge">LIVE v3.2.0</div>
+              </div>
+
+              <div class="terminal-body" id="terminal-body">
+                <div class="term-welcome">
+                  [SYSTEM INITIALIZED: GHULAM MURTAZA OS v3.2.0]<br />
+                  Node.js Backend & Three.js WebGL Core Active.<br />
+                  Type
+                  <span style="color: var(--neon-cyan); font-weight: 700"
+                    >help</span
+                  >
+                  to inspect system commands. (Try: <code>skills</code>,
+                  <code>chinese</code>, <code>scene globe</code>,
+                  <code>contact</code>)
+                </div>
+              </div>
+
+              <div
+                class="terminal-input-row"
+                style="
+                  padding: 0.8rem 1.5rem;
+                  background: rgba(8, 14, 32, 0.85);
+                "
+              >
+                <span class="prompt-symbol">nexus@murtaza:~$</span>
+                <input
+                  type="text"
+                  id="terminal-input"
+                  class="terminal-input"
+                  placeholder="Type command here (e.g. 'help', 'bio', 'projects', 'scene globe')..."
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. CONTACT & DIRECT TRANSMISSION -->
+        <section class="section" id="contact">
+          <div class="container">
+            <div class="section-header">
+              <div class="section-badge" data-i18n="contactBadge">
+                TRANSMIT MESSAGE
+              </div>
+              <h2 class="section-title" data-i18n="contactTitle">
+                Let's Build Something Exceptional
+              </h2>
+              <p class="section-subtitle">
+                Reach out directly for full-stack engineering contracts or
+                market consulting
+              </p>
+            </div>
+
+            <div class="contact-grid">
+              <!-- Direct Connect Panel -->
+              <div class="contact-info-panel">
+                <div class="direct-connect-card tilt-card">
+                  <h3
+                    style="
+                      font-family: var(--font-heading);
+                      font-size: 1.3rem;
+                      color: #fff;
+                      margin-bottom: 0.5rem;
+                    "
+                  >
+                    <i
+                      class="fa-solid fa-tower-broadcast"
+                      style="color: var(--neon-cyan)"
+                    ></i>
+                    Direct Channels
+                  </h3>
+
+                  <!-- Email -->
+                  <a
+                    href="mailto:murtzaharry21@gmail.com"
+                    class="direct-link-row"
+                  >
+                    <div class="link-icon-circle email">
+                      <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="link-details">
+                      <span class="link-title">murtzaharry21@gmail.com</span>
+                      <span class="link-subtitle"
+                        >Direct Email Transmission</span
+                      >
+                    </div>
+                  </a>
+
+                  <!-- WhatsApp / Phone -->
+                  <a
+                    href="https://wa.me/923260586026"
+                    target="_blank"
+                    class="direct-link-row"
+                  >
+                    <div class="link-icon-circle whatsapp">
+                      <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div class="link-details">
+                      <span class="link-title">+92 326 0586026</span>
+                      <span class="link-subtitle"
+                        >Instant WhatsApp / Direct Call</span
+                      >
+                    </div>
+                  </a>
+
+                  <!-- Fiverr Top-Rated -->
+                  <a
+                    href="https://www.fiverr.com/murtaza_harry?public_mode=true"
+                    target="_blank"
+                    class="direct-link-row"
+                  >
+                    <div class="link-icon-circle fiverr">
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="link-details">
+                      <span class="link-title"
+                        >Fiverr Profile (Top-Rated Seller)</span
+                      >
+                      <span class="link-subtitle">100+ 5-Star Reviews</span>
+                    </div>
+                  </a>
+
+                  <!-- Location -->
+                  <div class="direct-link-row" style="cursor: default">
+                    <div
+                      class="link-icon-circle"
+                      style="
+                        background: rgba(0, 240, 255, 0.15);
+                        color: var(--neon-cyan);
+                      "
+                    >
+                      <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="link-details">
+                      <span class="link-title"
+                        >Street 40, G13-2, Islamabad</span
+                      >
+                      <span class="link-subtitle">Pakistan (UTC+5)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact Form Card -->
+              <div class="contact-form-card tilt-card">
+                <div id="form-status-alert" class="form-status-alert"></div>
+
+                <form id="portfolio-contact-form">
+                  <div class="form-group-grid">
+                    <div class="form-field">
+                      <label class="form-label" for="contact-name">
+                        <i class="fa-solid fa-user"></i>
+                        <span data-i18n="formName">Your Full Name</span> *
+                      </label>
+                      <input
+                        type="text"
+                        id="contact-name"
+                        class="form-input"
+                        placeholder="e.g. John Doe"
+                        required
+                      />
+                    </div>
+
+                    <div class="form-field">
+                      <label class="form-label" for="contact-email">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span data-i18n="formEmail">Your Email Address</span> *
+                      </label>
+                      <input
+                        type="email"
+                        id="contact-email"
+                        class="form-input"
+                        placeholder="e.g. john@example.com"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group-grid">
+                    <div class="form-field">
+                      <label class="form-label" for="contact-subject">
+                        <i class="fa-solid fa-tag"></i>
+                        <span data-i18n="formSubject">Subject</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="contact-subject"
+                        class="form-input"
+                        placeholder="e.g. Full-Stack Web App Project"
+                      />
+                    </div>
+
+                    <div class="form-field">
+                      <label class="form-label" for="contact-type">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span data-i18n="formType">Project Classification</span>
+                      </label>
+                      <select id="contact-type" class="form-select">
+                        <option value="Full-Stack Web Development">
+                          Full-Stack Web Development (MERN/MEAN)
+                        </option>
+                        <option value="Market Research & Business Plan">
+                          Market Research & Business Plan
+                        </option>
+                        <option value="Chinese Cross-Border Consulting">
+                          Chinese Cross-Border Consulting (HSK-4)
+                        </option>
+                        <option value="3D WebGL / Interactive Experience">
+                          3D WebGL / Interactive Experience
+                        </option>
+                        <option value="General Inquiry">
+                          General Inquiry / Pair Programming
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-field">
+                    <label class="form-label" for="contact-message">
+                      <i class="fa-solid fa-message"></i>
+                      <span data-i18n="formMessage">Detailed Requirements</span>
+                      *
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      class="form-textarea"
+                      placeholder="Describe your project vision, timeline, and deliverables..."
+                      required
+                    ></textarea>
+                  </div>
+
+                  <button
+                    type="submit"
+                    id="form-submit-btn"
+                    class="btn-primary"
+                    style="width: 100%; justify-content: center"
+                  >
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span data-i18n="formSubmit">Send Transmission</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="container footer-content">
+          <div class="logo-brand">
+            <div class="logo-badge">GM</div>
+            <div class="logo-text">GHULAM MURTAZA</div>
+          </div>
+
+          <div class="footer-credits">
+            © 2026 Ghulam Murtaza. Built with <strong>Node.js</strong> &
+            <strong>Three.js 3D WebGL</strong>.
+          </div>
+
+          <div class="footer-socials">
+            <a
+              href="mailto:murtzaharry21@gmail.com"
+              class="social-icon-btn"
+              title="Email"
+              ><i class="fa-solid fa-envelope"></i
+            ></a>
+            <a
+              href="https://wa.me/923260586026"
+              target="_blank"
+              class="social-icon-btn"
+              title="WhatsApp"
+              ><i class="fa-brands fa-whatsapp"></i
+            ></a>
+            <a
+              href="https://github.com/murtzaharri21-cyber"
+              target="_blank"
+              class="social-icon-btn"
+              title="GitHub"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/ghulam-murtaza-493aa2212/"
+              target="_blank"
+              class="social-icon-btn"
+              title="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- INTERACTIVE RESUME / CV MODAL -->
+    <div class="modal-backdrop" id="resume-modal">
+      <div class="modal-window">
+        <div class="modal-header-bar">
+          <div
+            style="
+              font-family: var(--font-heading);
+              font-size: 1.1rem;
+              color: var(--neon-cyan);
+            "
+          >
+            <i class="fa-solid fa-file-pdf"></i> Curriculum Vitae — Ghulam
+            Murtaza
+          </div>
+          <div style="display: flex; gap: 0.8rem; align-items: center">
+            <button
+              id="print-resume-btn"
+              class="btn-secondary"
+              style="padding: 0.35rem 1rem; font-size: 0.85rem"
+            >
+              <i class="fa-solid fa-print"></i> Print / Save PDF
+            </button>
+            <button class="modal-close-btn" id="modal-close-btn">
+              &times;
+            </button>
+          </div>
+        </div>
+
+        <div class="resume-print-layout">
+          <div class="cv-header">
+            <h1 class="cv-name">Ghulam Murtaza</h1>
+            <div class="cv-sub">
+              Full Stack Developer & Top-Rated Market Strategist
+            </div>
+            <div class="cv-contact-row">
+              <span
+                ><i class="fa-solid fa-envelope"></i>
+                murtzaharry21@gmail.com</span
+              >
+              <span><i class="fa-solid fa-phone"></i> +92 326 0586026</span>
+              <span
+                ><i class="fa-solid fa-location-dot"></i> Street 40, G13-2,
+                Islamabad, Pakistan</span
+              >
+            </div>
+          </div>
+
+          <div>
+            <div class="cv-section-title">ABOUT ME</div>
+            <p style="color: var(--text-secondary); line-height: 1.7">
+              Computer Science graduate and Top-Rated Fiverr Seller with 5+
+              years of experience in market research, business analysis, and
+              strategic consulting. Supported startups, SMEs, and established
+              companies worldwide with data-driven insights and growth
+              strategies. Full-Stack developer fluent in Chinese (HSK-4);
+              experienced in cross-cultural collaboration.
+            </p>
+          </div>
+
+          <div>
+            <div class="cv-section-title">EDUCATION</div>
+            <div style="display: flex; flex-direction: column; gap: 0.8rem">
+              <div>
+                <strong>Bachelor of Science in Computer Science (BScs)</strong>
+                (2021 – 2025)<br />
+                <span style="color: var(--text-highlight)"
+                  >Sarhad University Islamabad</span
+                >
+              </div>
+              <div>
+                <strong>Chinese Language Studies</strong> (2020 – 2021)<br />
+                <span style="color: var(--text-highlight)"
+                  >NUML University Islamabad</span
+                >
+              </div>
+              <div>
+                <strong
+                  >Bachelor of Science in Computer Science – Online</strong
+                >
+                (2019 – 2020)<br />
+                <span style="color: var(--text-highlight)"
+                  >Beijing University</span
+                >
+              </div>
+              <div>
+                <strong>Chinese Literature</strong> (2018 – 2019)<br />
+                <span style="color: var(--text-highlight)"
+                  >Hexi University, China</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cv-section-title">TRAINING & CERTIFICATIONS</div>
+            <div>
+              <strong
+                >NAVTTC Training – MEAN & MERN Stack JavaScript
+                Development</strong
+              ><br />
+              <span style="color: var(--text-highlight)"
+                >Adan Institute of Technology, I-9, Islamabad | Government of
+                Pakistan (NAVTTC)</span
+              >
+            </div>
+          </div>
+
+          <div>
+            <div class="cv-section-title">WORK EXPERIENCE</div>
+            <div style="display: flex; flex-direction: column; gap: 1.2rem">
+              <div>
+                <strong
+                  >Freelance Market Researcher & Business Consultant</strong
+                >
+                (Since 2020 – Present)<br />
+                <span style="color: var(--neon-cyan)"
+                  >Fiverr (Top-Rated Seller) — Remote</span
+                >
+                <ul
+                  style="
+                    margin-left: 1.5rem;
+                    margin-top: 0.4rem;
+                    color: var(--text-secondary);
+                  "
+                >
+                  <li>
+                    Delivered market research, business plans, and competitive
+                    analysis to 100+ clients globally.
+                  </li>
+                  <li>
+                    Supported startups and SMEs with go-to-market strategies and
+                    data-driven business model development.
+                  </li>
+                  <li>
+                    Maintained Top-Rated Seller status through consistent,
+                    high-quality, on-time delivery.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <strong>Market Researcher & Business Planner</strong> (2022 –
+                2026)<br />
+                <span style="color: var(--neon-cyan)">Upwork — Remote</span>
+                <ul
+                  style="
+                    margin-left: 1.5rem;
+                    margin-top: 0.4rem;
+                    color: var(--text-secondary);
+                  "
+                >
+                  <li>
+                    Provided market research and strategic consulting to diverse
+                    clients across industries.
+                  </li>
+                  <li>
+                    Delivered industry analysis, competitor benchmarking, and
+                    actionable business roadmaps.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="cv-section-title">SKILLS</div>
+            <p style="color: var(--text-secondary); line-height: 1.7">
+              • Market Research & Business Planning | Business Strategy &
+              Consulting | Data-Driven Decision Making<br />
+              • Full Stack Development (Front-End & Back-End) | Web Design &
+              Front-End Development<br />
+              • JavaScript, HTML5 & CSS3 | React.js & Tailwind CSS | Bootstrap |
+              Node.js<br />
+              • MEAN & MERN Stack | Fiverr Top-Rated Seller | Upwork
+            </p>
+          </div>
+
+          <div>
+            <div class="cv-section-title">LANGUAGES</div>
+            <p style="color: var(--text-secondary); line-height: 1.7">
+              • <strong>Urdu</strong> – Native<br />
+              • <strong>English</strong> – Professional Proficiency<br />
+              • <strong>Chinese (Mandarin)</strong> – HSK-4 Certified
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/audio.js"></script>
+    <script type="module" src="js/i18n.js"></script>
+    <script type="module" src="js/three-scene.js"></script>
+    <script type="module" src="js/terminal.js"></script>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
