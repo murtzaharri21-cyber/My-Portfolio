@@ -13,8 +13,8 @@ import setSplitText from "./utils/splitText";
 const TechStack = lazy(() => import("./TechStack"));
 
 const MainContainer = ({ children }: PropsWithChildren) => {
-  const [isDesktopView, setIsDesktopView] = useState<boolean>(
-    window.innerWidth > 1024
+  const [isDesktopView, setIsDesktopView] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.innerWidth > 1024 : false
   );
 
   useEffect(() => {

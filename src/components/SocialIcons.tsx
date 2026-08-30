@@ -9,10 +9,20 @@ import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
 
 const SocialIcons = () => {
-  useEffect(() => {
-    const social = document.getElementById("social") as HTMLElement;
+  const isMobile =
+    typeof window !== "undefined" &&
+    (window.innerWidth <= 768 ||
+      window.matchMedia("(pointer: coarse)").matches);
 
-    social.querySelectorAll("span").forEach((item) => {
+  useEffect(() => {
+    if (isMobile) return;
+    const social = document.getElementById("social") as HTMLElement;
+    if (!social) return;
+
+    const spans = social.querySelectorAll("span");
+    const cleanups: Array<() => void> = [];
+
+    spans.forEach((item) => {
       const elem = item as HTMLElement;
       const link = elem.querySelector("a") as HTMLElement;
 
@@ -23,8 +33,8 @@ const SocialIcons = () => {
       let currentY = 0;
 
       const updatePosition = () => {
-        currentX += (mouseX - currentX) * 0.1;
-        currentY += (mouseY - currentY) * 0.1;
+        currentX += (mouseX - currentX) * 0.12;
+        currentY += (mouseY - currentY) * 0.12;
 
         link.style.setProperty("--siLeft", `${currentX}px`);
         link.style.setProperty("--siTop", `${currentY}px`);
@@ -46,14 +56,18 @@ const SocialIcons = () => {
       };
 
       document.addEventListener("mousemove", onMouseMove);
-
       updatePosition();
 
-      return () => {
+      cleanups.push(() => {
         elem.removeEventListener("mousemove", onMouseMove);
-      };
+      });
     });
-  }, []);
+
+    return () => {
+      document.removeEventListener("mousemove", () => undefined);
+      cleanups.forEach((cleanup) => cleanup());
+    };
+  }, [isMobile]);
 
   return (
     <div className="icons-section">

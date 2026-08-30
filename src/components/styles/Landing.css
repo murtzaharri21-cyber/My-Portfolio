@@ -33,9 +33,11 @@
   top: 0;
   width: 100%;
   height: 130px;
-  background-image: linear-gradient(0deg,
-      transparent,
-      var(--backgroundColor) 70%);
+  background-image: linear-gradient(
+    0deg,
+    transparent,
+    var(--backgroundColor) 70%
+  );
   pointer-events: none;
   z-index: 12;
   opacity: 0;
@@ -123,9 +125,11 @@
   content: "";
   width: 100vw;
   height: 250px;
-  background-image: linear-gradient(to bottom,
-      transparent,
-      var(--backgroundColor) 70%);
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    var(--backgroundColor) 70%
+  );
   bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
@@ -166,6 +170,173 @@
   z-index: 3;
   transform: translate(-50%, -50%);
   border-radius: 50%;
+}
+
+.mobile-hero-3d {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  perspective: 1000px;
+}
+
+.mobile-hero-scene {
+  position: relative;
+  width: min(78vw, 360px);
+  height: min(52vh, 420px);
+  border-radius: 28px;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.18),
+    rgba(14, 165, 233, 0.08),
+    rgba(15, 23, 42, 0.4)
+  );
+  border: 1px solid rgba(94, 234, 212, 0.35);
+  box-shadow: 0 20px 60px rgba(8, 47, 73, 0.28);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+  transition: transform 160ms ease-out;
+  will-change: transform;
+  overflow: hidden;
+}
+
+.mobile-hero-backdrop {
+  position: absolute;
+  inset: 10% 12%;
+  border-radius: 28px;
+  background: radial-gradient(
+    circle at 50% 18%,
+    rgba(125, 211, 252, 0.6),
+    rgba(13, 148, 136, 0.08) 35%,
+    transparent 70%
+  );
+  filter: blur(12px);
+  transform: translateZ(18px);
+}
+
+.mobile-hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0.8;
+  animation: mobileOrbFloat 7s ease-in-out infinite alternate;
+}
+
+.mobile-hero-orb-one {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(
+    circle,
+    rgba(34, 211, 238, 0.9),
+    rgba(34, 211, 238, 0.18) 58%,
+    transparent 68%
+  );
+  right: 12%;
+  top: 12%;
+  transform: translateZ(35px);
+}
+
+.mobile-hero-orb-two {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(
+    circle,
+    rgba(45, 212, 191, 0.8),
+    rgba(45, 212, 191, 0.15) 55%,
+    transparent 70%
+  );
+  left: 10%;
+  bottom: 16%;
+  animation-delay: 0.8s;
+  transform: translateZ(20px);
+}
+
+.mobile-hero-ring {
+  position: absolute;
+  inset: 18% 16%;
+  border-radius: 50%;
+  border: 1px solid rgba(125, 211, 252, 0.7);
+  box-shadow:
+    inset 0 0 35px rgba(34, 211, 238, 0.18),
+    0 0 26px rgba(45, 212, 191, 0.24);
+  transform: rotateX(66deg) translateZ(36px);
+  animation: mobileRingPulse 5s ease-in-out infinite alternate;
+}
+
+.mobile-hero-card {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%) translateZ(60px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+  min-width: 170px;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(165, 243, 252, 0.4);
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.52);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.3);
+}
+
+.mobile-hero-badge {
+  font-size: 0.58rem;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+  color: #5eead4;
+}
+
+.mobile-hero-card strong {
+  font-size: 1.15rem;
+  color: #e2f7ff;
+  letter-spacing: 0.06rem;
+}
+
+.mobile-hero-card small {
+  font-size: 0.68rem;
+  color: rgba(191, 219, 254, 0.8);
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
+@keyframes mobileOrbFloat {
+  0% {
+    transform: translate3d(0, 0, 20px) scale(0.96);
+  }
+  100% {
+    transform: translate3d(0, -12px, 38px) scale(1.04);
+  }
+}
+
+@keyframes mobileRingPulse {
+  0% {
+    opacity: 0.6;
+    transform: rotateX(66deg) translateZ(36px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(66deg) translateZ(36px) scale(1.06);
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-hero-3d {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-hero-scene,
+  .mobile-hero-orb,
+  .mobile-hero-ring {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 .landing-intro {
@@ -255,9 +426,11 @@ h2.landing-info-h2 {
   width: 100%;
   height: 120%;
   z-index: 3;
-  background-image: linear-gradient(0deg,
-      var(--backgroundColor) 40%,
-      rgba(0, 0, 0, 0) 110%);
+  background-image: linear-gradient(
+    0deg,
+    var(--backgroundColor) 40%,
+    rgba(0, 0, 0, 0) 110%
+  );
   top: 0;
   left: 0;
 }
