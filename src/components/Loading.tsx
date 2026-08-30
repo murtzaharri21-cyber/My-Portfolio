@@ -12,14 +12,19 @@ const Loading = ({ percent }: { percent: number }) => {
 
   const isMobile =
     typeof window !== "undefined" &&
-    (window.innerWidth <= 768 || window.matchMedia("(pointer: coarse)").matches);
+    (window.innerWidth <= 768 ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      /(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i.test(
+        navigator.userAgent
+      ));
 
   useEffect(() => {
     if (isMobile) {
       setLoading(100);
       setLoaded(true);
-      const finishLoading = window.setTimeout(() => setIsLoaded(true), 250);
-      return () => window.clearTimeout(finishLoading);
+      setClicked(true);
+      setIsLoading(false);
+      return;
     }
 
     if (percent < 100) return;
@@ -27,18 +32,25 @@ const Loading = ({ percent }: { percent: number }) => {
     setLoaded(true);
     const finishLoading = window.setTimeout(() => setIsLoaded(true), 250);
     return () => window.clearTimeout(finishLoading);
-  }, [isMobile, percent, setLoading]);
+  }, [isMobile, percent, setIsLoading, setLoading]);
 
   useEffect(() => {
     if (!isLoaded) return;
 
     setClicked(true);
     let cancelled = false;
-    import("./utils/initialFX").then((module) => {
-      if (cancelled) return;
-      module.initialFX?.();
-      setIsLoading(false);
-    });
+    import("./utils/initialFX")
+      .then((module) => {
+        if (cancelled) return;
+        try {
+          module.initialFX?.();
+        } finally {
+          setIsLoading(false);
+        }
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
 
     return () => {
       cancelled = true;

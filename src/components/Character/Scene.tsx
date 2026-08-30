@@ -14,11 +14,6 @@ import setAnimations from "./utils/animationUtils";
 import { setProgress } from "../Loading";
 
 const Scene = () => {
-  const isMobile =
-    typeof window !== "undefined" &&
-    (window.innerWidth <= 768 ||
-      window.matchMedia("(pointer: coarse)").matches);
-
   const canvasDiv = useRef<HTMLDivElement | null>(null);
   const hoverDivRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef(new THREE.Scene());
@@ -26,7 +21,6 @@ const Scene = () => {
 
   const [character, setChar] = useState<THREE.Object3D | null>(null);
   useEffect(() => {
-    if (isMobile) return;
     if (canvasDiv.current) {
       const rect = canvasDiv.current.getBoundingClientRect();
       const container = { width: rect.width, height: rect.height };
@@ -147,9 +141,7 @@ const Scene = () => {
         }
       };
     }
-  }, [isMobile]);
-
-  if (isMobile) return null;
+  }, []);
 
   return (
     <>
