@@ -13,21 +13,35 @@ import setSplitText from "./utils/splitText";
 const TechStack = lazy(() => import("./TechStack"));
 
 const MainContainer = ({ children }: PropsWithChildren) => {
-  const [isDesktopView, setIsDesktopView] = useState<boolean>(() =>
-    typeof window !== "undefined" ? window.innerWidth > 1024 : false
-  );
+  const [isDesktopView, setIsDesktopView] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return (
+      window.innerWidth > 1024 &&
+      !window.matchMedia("(pointer: coarse)").matches
+    );
+  });
 
   useEffect(() => {
     const resizeHandler = () => {
+      const isTouchDevice =
+        window.matchMedia("(pointer: coarse)").matches ||
+        window.innerWidth <= 1024;
+
+      if (isTouchDevice) {
+        setIsDesktopView(false);
+        return;
+      }
+
       setSplitText();
       setIsDesktopView(window.innerWidth > 1024);
     };
+
     resizeHandler();
     window.addEventListener("resize", resizeHandler);
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
-  }, [isDesktopView]);
+  }, []);
 
   return (
     <div className="container-main">

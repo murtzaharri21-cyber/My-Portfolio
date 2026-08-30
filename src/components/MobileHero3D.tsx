@@ -17,12 +17,17 @@ const MobileHero3D = () => {
     let currentY = 0;
 
     const update = () => {
-      currentX += (pointerX - currentX) * 0.08;
-      currentY += (pointerY - currentY) * 0.08;
+      currentX += (pointerX - currentX) * 0.12;
+      currentY += (pointerY - currentY) * 0.12;
 
       scene.style.setProperty("--rotate-x", `${currentY.toFixed(2)}deg`);
       scene.style.setProperty("--rotate-y", `${currentX.toFixed(2)}deg`);
-      rafRef.current = requestAnimationFrame(update);
+
+      if (Math.abs(pointerX - currentX) > 0.02 || Math.abs(pointerY - currentY) > 0.02) {
+        rafRef.current = requestAnimationFrame(update);
+      } else {
+        rafRef.current = null;
+      }
     };
 
     const handleMove = (event: PointerEvent | TouchEvent) => {
@@ -31,13 +36,20 @@ const MobileHero3D = () => {
       const x = (point.clientX - rect.left) / rect.width - 0.5;
       const y = (point.clientY - rect.top) / rect.height - 0.5;
 
-      pointerX = x * 18;
-      pointerY = y * -18;
+      pointerX = x * 14;
+      pointerY = y * -14;
+
+      if (!rafRef.current) {
+        rafRef.current = requestAnimationFrame(update);
+      }
     };
 
     const handleLeave = () => {
       pointerX = 0;
       pointerY = 0;
+      if (!rafRef.current) {
+        rafRef.current = requestAnimationFrame(update);
+      }
     };
 
     scene.addEventListener("pointermove", handleMove);
@@ -46,7 +58,6 @@ const MobileHero3D = () => {
       passive: true,
     });
     scene.addEventListener("touchend", handleLeave);
-    rafRef.current = requestAnimationFrame(update);
 
     return () => {
       scene.removeEventListener("pointermove", handleMove);

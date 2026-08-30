@@ -10,6 +10,12 @@ export let smoother: ScrollSmoother;
 
 const Navbar = () => {
   useEffect(() => {
+    const isMobileDevice =
+      window.innerWidth <= 900 ||
+      window.matchMedia("(pointer: coarse)").matches;
+
+    if (isMobileDevice) return;
+
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
@@ -35,9 +41,15 @@ const Navbar = () => {
         }
       });
     });
-    window.addEventListener("resize", () => {
+
+    const handleResize = () => {
       ScrollSmoother.refresh(true);
-    });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
   return (
     <>
