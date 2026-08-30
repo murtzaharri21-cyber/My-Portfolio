@@ -5,18 +5,29 @@ import { useLoading } from "../context/LoadingProvider";
 import Marquee from "react-fast-marquee";
 
 const Loading = ({ percent }: { percent: number }) => {
-  const { setIsLoading } = useLoading();
+  const { setIsLoading, setLoading } = useLoading();
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
 
+  const isMobile =
+    typeof window !== "undefined" &&
+    (window.innerWidth <= 768 || window.matchMedia("(pointer: coarse)").matches);
+
   useEffect(() => {
+    if (isMobile) {
+      setLoading(100);
+      setLoaded(true);
+      const finishLoading = window.setTimeout(() => setIsLoaded(true), 250);
+      return () => window.clearTimeout(finishLoading);
+    }
+
     if (percent < 100) return;
 
     setLoaded(true);
     const finishLoading = window.setTimeout(() => setIsLoaded(true), 250);
     return () => window.clearTimeout(finishLoading);
-  }, [percent]);
+  }, [isMobile, percent, setLoading]);
 
   useEffect(() => {
     if (!isLoaded) return;
