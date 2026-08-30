@@ -43,11 +43,14 @@
   width: 450px;
   height: 33%;
   min-height: 50%;
-  transition: 0.5s;
-  /* border: 0.5px dashed rgba(255, 255, 255, 0.3); */
+  transition:
+    transform 0.25s ease,
+    min-height 0.3s ease,
+    padding 0.3s ease;
   position: relative;
   padding: 50px;
   box-sizing: border-box;
+  will-change: transform;
 }
 
 .what-noTouch:hover,
@@ -335,6 +338,10 @@
   }
   .what-content {
     width: 100%;
+    transform: translateZ(0);
+    transition:
+      transform 0.2s ease,
+      padding 0.2s ease;
   }
   .what-box-in {
     margin-left: 0px;
@@ -343,7 +350,7 @@
   .what-content h5,
   .what-content-flex {
     opacity: 0;
-    transition: 0.3s;
+    transition: 0.2s ease;
   }
   .what-noTouch:hover h5,
   .what-content-active h5,
@@ -360,6 +367,7 @@
   .what-noTouch:hover,
   .what-content-active {
     padding: 10px 30px;
+    transform: translateY(-2px);
   }
   .what-tags {
     font-size: 11px;
@@ -372,6 +380,15 @@
   }
   .what-content h3 {
     font-size: 25px;
+  }
+
+  .what-content::before,
+  .what-corner::before,
+  .what-content::after,
+  .what-corner::after,
+  .what-border1,
+  .what-border2 {
+    animation-duration: 0.35s;
   }
 }
 @media only screen and (max-width: 550px) {

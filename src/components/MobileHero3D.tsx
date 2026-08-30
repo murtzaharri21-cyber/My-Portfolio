@@ -17,13 +17,13 @@ const MobileHero3D = () => {
     let currentY = 0;
 
     const update = () => {
-      currentX += (pointerX - currentX) * 0.12;
-      currentY += (pointerY - currentY) * 0.12;
+      currentX += (pointerX - currentX) * 0.1;
+      currentY += (pointerY - currentY) * 0.1;
 
       scene.style.setProperty("--rotate-x", `${currentY.toFixed(2)}deg`);
       scene.style.setProperty("--rotate-y", `${currentX.toFixed(2)}deg`);
 
-      if (Math.abs(pointerX - currentX) > 0.02 || Math.abs(pointerY - currentY) > 0.02) {
+      if (Math.abs(pointerX - currentX) > 0.03 || Math.abs(pointerY - currentY) > 0.03) {
         rafRef.current = requestAnimationFrame(update);
       } else {
         rafRef.current = null;
@@ -36,8 +36,8 @@ const MobileHero3D = () => {
       const x = (point.clientX - rect.left) / rect.width - 0.5;
       const y = (point.clientY - rect.top) / rect.height - 0.5;
 
-      pointerX = x * 14;
-      pointerY = y * -14;
+      pointerX = x * 12;
+      pointerY = y * -12;
 
       if (!rafRef.current) {
         rafRef.current = requestAnimationFrame(update);
