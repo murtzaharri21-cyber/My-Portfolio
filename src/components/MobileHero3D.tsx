@@ -67,6 +67,11 @@ const MobileHero3D = () => {
         <div className="mobile-hero-orb mobile-hero-orb-one" />
         <div className="mobile-hero-orb mobile-hero-orb-two" />
         <div className="mobile-hero-ring" />
+        <div className="mobile-hero-particles">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <span key={index} className="mobile-particle" />
+          ))}
+        </div>
         <div className="mobile-hero-card">
           <span className="mobile-hero-badge">Creative Dev</span>
           <strong>Ghulam Murtaza</strong>
