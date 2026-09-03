@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { MdClose, MdInbox, MdMarkEmailRead } from "react-icons/md";
+import { RiMessengerLine } from "react-icons/ri";
 import "./styles/Inbox.css";
 
 interface InboxMessage {
@@ -62,7 +63,7 @@ const Inbox = () => {
   return (
     <>
       <button className="inbox-trigger" type="button" onClick={() => setIsOpen(true)} aria-label="Open inbox">
-        <MdInbox />
+        <RiMessengerLine />
         {unreadCount > 0 && <span>{unreadCount}</span>}
       </button>
       {isOpen && (
