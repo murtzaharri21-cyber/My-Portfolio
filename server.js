@@ -19,6 +19,7 @@ if (!existsSync(DATA_DIR)) {
   mkdirSync(DATA_DIR, { recursive: true });
 }
 const MESSAGES_FILE = path.join(DATA_DIR, "messages.json");
+const INBOX_KEY = process.env.INBOX_KEY;
 
 // Middlewares
 app.use(
@@ -447,6 +448,59 @@ app.post("/api/contact", async (req, res) => {
       success: false,
       error: "Internal server error occurred while processing your message.",
     });
+  }
+});
+
+const requireInboxKey = (req, res, next) => {
+  if (!INBOX_KEY || req.get("x-inbox-key") !== INBOX_KEY) {
+    return res.status(401).json({
+      success: false,
+      error: "A valid inbox key is required.",
+    });
+  }
+  next();
+};
+
+app.get("/api/inbox", requireInboxKey, async (req, res) => {
+  try {
+    const data = await fs.readFile(MESSAGES_FILE, "utf8");
+    const messages = JSON.parse(data);
+    return res.json({
+      success: true,
+      data: messages.sort(
+        (first, second) =>
+          new Date(second.timestamp).getTime() -
+          new Date(first.timestamp).getTime(),
+      ),
+    });
+  } catch {
+    return res.json({ success: true, data: [] });
+  }
+});
+
+app.patch("/api/inbox/:id", requireInboxKey, async (req, res) => {
+  try {
+    const data = await fs.readFile(MESSAGES_FILE, "utf8");
+    const messages = JSON.parse(data);
+    const message = messages.find((item) => item.id === req.params.id);
+
+    if (!message) {
+      return res
+        .status(404)
+        .json({ success: false, error: "Message not found." });
+    }
+
+    message.read = Boolean(req.body.read);
+    await fs.writeFile(
+      MESSAGES_FILE,
+      JSON.stringify(messages, null, 2),
+      "utf8",
+    );
+    return res.json({ success: true, data: message });
+  } catch {
+    return res
+      .status(500)
+      .json({ success: false, error: "Unable to update message." });
   }
 });
 
