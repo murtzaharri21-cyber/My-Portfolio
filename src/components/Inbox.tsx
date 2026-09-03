@@ -25,11 +25,19 @@ const Inbox = () => {
     const response = await fetch("/api/inbox", {
       headers: { "x-inbox-key": inboxKey },
     });
-    const result = await response.json();
+    const responseText = await response.text();
+    let result: { error?: string; data?: InboxMessage[] } = {};
+    if (responseText) {
+      try {
+        result = JSON.parse(responseText) as { error?: string; data?: InboxMessage[] };
+      } catch {
+        throw new Error("The server returned an invalid response. Please try again.");
+      }
+    }
     if (!response.ok) throw new Error(result.error || "Unable to open inbox.");
     localStorage.setItem("inbox-key", inboxKey);
     setKey(inboxKey);
-    setMessages(result.data);
+    setMessages(result.data || []);
     setError("");
   };
 

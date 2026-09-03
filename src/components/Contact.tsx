@@ -32,7 +32,15 @@ const Contact = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, name, email, message }),
       });
-      const result = await response.json();
+      const responseText = await response.text();
+      let result: { error?: string } = {};
+      if (responseText) {
+        try {
+          result = JSON.parse(responseText) as { error?: string };
+        } catch {
+          throw new Error("The server returned an invalid response. Please try again.");
+        }
+      }
       if (!response.ok) throw new Error(result.error || "Unable to send message.");
       setStatus("Message sent successfully.");
       setForm({ name: "", email: "", subject: "", message: "" });
