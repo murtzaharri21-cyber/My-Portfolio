@@ -46,6 +46,9 @@
   position: relative;
   display: flex;
 }
+.social-icons .inbox-dock-item {
+  display: none;
+}
 .social-icons a {
   --siLeft: 50%;
   --siTop: 50%;
@@ -123,6 +126,9 @@ div.resume-button span {
   .social-icons span {
     width: 44px;
     height: 44px;
+  }
+  .social-icons .inbox-dock-item {
+    display: flex;
   }
   .social-icons a {
     color: rgba(255, 255, 255, 0.92);
