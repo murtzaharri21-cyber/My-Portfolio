@@ -77,10 +77,12 @@ const Inbox = () => {
 
   return createPortal(
     <>
-      <button className="inbox-trigger" type="button" onClick={() => setIsOpen(true)} aria-label="Open inbox">
-        <img src="/images/tron-logo.svg" alt="" />
-        {unreadCount > 0 && <span>{unreadCount}</span>}
-      </button>
+      {!isOpen && (
+        <button className="inbox-trigger" type="button" onClick={() => setIsOpen(true)} aria-label="Open inbox">
+          <img src="/images/tron-logo.svg" alt="" />
+          {unreadCount > 0 && <span>{unreadCount}</span>}
+        </button>
+      )}
       {isOpen && (
         <div className="inbox-backdrop" onClick={() => setIsOpen(false)}>
           <section className="inbox-panel" onClick={(event) => event.stopPropagation()}>
