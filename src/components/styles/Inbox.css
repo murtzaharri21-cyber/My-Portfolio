@@ -224,6 +224,7 @@
     height: 40px;
     background: rgba(15, 18, 25, 0.5);
     border-color: rgba(255, 255, 255, 0.2);
+    display: none;
   }
   .inbox-trigger img {
     width: 24px;

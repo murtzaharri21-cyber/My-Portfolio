@@ -44,6 +44,9 @@ const Inbox = () => {
   };
 
   useEffect(() => {
+    const openInbox = () => setIsOpen(true);
+    window.addEventListener("open-inbox", openInbox);
+
     const savedKey = localStorage.getItem("inbox-key");
     if (savedKey) {
       loadMessages(savedKey).catch(() => {
@@ -51,6 +54,7 @@ const Inbox = () => {
         setIsAuthenticated(false);
       });
     }
+    return () => window.removeEventListener("open-inbox", openInbox);
   }, []);
 
   const openMessage = async (message: InboxMessage) => {

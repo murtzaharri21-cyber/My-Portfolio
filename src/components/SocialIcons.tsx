@@ -90,6 +90,16 @@ const SocialIcons = () => {
             <FaLinkedinIn />
           </a>
         </span>
+        <span className="inbox-dock-item">
+          <button
+            className="inbox-dock-trigger"
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-inbox"))}
+            aria-label="Open inbox"
+          >
+            <img src="/images/tron-logo.svg" alt="" />
+          </button>
+        </span>
         <span>
           <a
             href="https://www.fiverr.com/murtaza_harry?public_mode=true"
