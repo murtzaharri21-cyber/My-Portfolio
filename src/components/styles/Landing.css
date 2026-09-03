@@ -511,6 +511,25 @@ h2.landing-info-h2 {
   left: 0;
 }
 
+@media screen and (max-width: 1024px) {
+  h2.landing-info-h2 {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin-left: 0;
+    line-height: 1.05;
+  }
+
+  .landing-h2-2 {
+    position: static;
+  }
+
+  .landing-info-h2::after,
+  .landing-info > h2:last-child {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 500px) {
   .landing-circle2 {
     display: block;
