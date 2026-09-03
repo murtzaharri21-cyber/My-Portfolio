@@ -1,7 +1,34 @@
+import { FormEvent, useState } from "react";
 import { MdArrowOutward, MdCopyright } from "react-icons/md";
 import "./styles/Contact.css";
 
 const Contact = () => {
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [status, setStatus] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSending(true);
+    setStatus("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Unable to send message.");
+      setStatus("Message sent successfully.");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Unable to send message.");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
     <div className="contact-section section-container" id="contact">
       <div className="contact-container">
@@ -35,6 +62,17 @@ const Contact = () => {
               Chinese Language Studies, NUML University — 2020–2021
             </p>
             <p>HSK-4 Certified (Fluent Mandarin Chinese)</p>
+          </div>
+          <div className="contact-box">
+            <h4>Send a message</h4>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <input type="text" placeholder="Your name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required />
+              <input type="email" placeholder="Your email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} required />
+              <input type="text" placeholder="Subject" value={form.subject} onChange={(event) => setForm({ ...form, subject: event.target.value })} />
+              <textarea placeholder="Write your message" value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} rows={4} required />
+              <button type="submit" disabled={isSending}>{isSending ? "Sending..." : "Send message"}</button>
+              {status && <p className="contact-form-status">{status}</p>}
+            </form>
           </div>
           <div className="contact-box">
             <h4>Social</h4>
