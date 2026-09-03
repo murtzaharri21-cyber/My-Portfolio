@@ -20,6 +20,7 @@ const Loading = ({ percent }: { percent: number }) => {
 
   useEffect(() => {
     if (isMobile) {
+      document.body.style.overflowY = "auto";
       setLoading(100);
       setLoaded(true);
       setClicked(true);
