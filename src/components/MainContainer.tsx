@@ -4,6 +4,7 @@ import Career from "./Career";
 import Contact from "./Contact";
 import Cursor from "./Cursor";
 import Landing from "./Landing";
+import MobileHero3D from "./MobileHero3D";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
@@ -52,7 +53,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="container-main">
-            <Landing>{!isDesktopView && children}</Landing>
+            <Landing>{isDesktopView ? null : <MobileHero3D />}</Landing>
             <About />
             <WhatIDo />
             <Career />

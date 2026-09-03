@@ -8,9 +8,6 @@ const MobileHero3D = () => {
     const scene = sceneRef.current;
     if (!scene) return;
 
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mediaQuery.matches) return;
-
     let pointerX = 0;
     let pointerY = 0;
     let currentX = 0;

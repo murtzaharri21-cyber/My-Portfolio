@@ -201,6 +201,7 @@
   transition: transform 160ms ease-out;
   will-change: transform;
   overflow: hidden;
+  pointer-events: auto;
 }
 
 .mobile-hero-backdrop {
@@ -411,15 +412,6 @@
 @media (min-width: 769px) {
   .mobile-hero-3d {
     display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mobile-hero-scene,
-  .mobile-hero-orb,
-  .mobile-hero-ring {
-    animation: none !important;
-    transition: none !important;
   }
 }
 
