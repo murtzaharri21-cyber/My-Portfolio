@@ -4,8 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
-import fs from "fs/promises";
-import { existsSync, mkdirSync } from "fs";
+import { MongoClient } from "mongodb";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,13 +12,32 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Ensure data directory exists for contact messages
-const DATA_DIR = path.join(__dirname, "data");
-if (!existsSync(DATA_DIR)) {
-  mkdirSync(DATA_DIR, { recursive: true });
-}
-const MESSAGES_FILE = path.join(DATA_DIR, "messages.json");
 const INBOX_KEY = process.env.INBOX_KEY;
+const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_DB = process.env.MONGODB_DB || "portfolio";
+const MONGODB_COLLECTION = process.env.MONGODB_COLLECTION || "messages";
+let mongoClient;
+let messagesCollection;
+
+const getMessagesCollection = async () => {
+  if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI is not configured.");
+  }
+
+  if (!messagesCollection) {
+    mongoClient = new MongoClient(MONGODB_URI, {
+      maxPoolSize: 10,
+      serverSelectionTimeoutMS: 5000,
+    });
+    await mongoClient.connect();
+    messagesCollection = mongoClient
+      .db(MONGODB_DB)
+      .collection(MONGODB_COLLECTION);
+    await messagesCollection.createIndex({ timestamp: -1 });
+  }
+
+  return messagesCollection;
+};
 
 // Middlewares
 app.use(
@@ -389,7 +407,6 @@ app.get("/api/health", (req, res) => {
 app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, subject, message, projectType } = req.body;
-
     const trimmedName = typeof name === "string" ? name.trim() : "";
     const trimmedEmail = typeof email === "string" ? email.trim() : "";
     const trimmedMessage = typeof message === "string" ? message.trim() : "";
@@ -401,8 +418,7 @@ app.post("/api/contact", async (req, res) => {
       });
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+$/;
-    if (!emailRegex.test(trimmedEmail)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       return res.status(400).json({
         success: false,
         error: "Please provide a valid email address.",
@@ -415,30 +431,17 @@ app.post("/api/contact", async (req, res) => {
       timestamp: new Date().toISOString(),
       name: trimmedName,
       email: trimmedEmail,
-      subject: subject ? subject.trim() : "General Inquiry",
+      subject:
+        typeof subject === "string" && subject.trim()
+          ? subject.trim()
+          : "General Inquiry",
       projectType: projectType || "Full-Stack Development & Consulting",
       message: trimmedMessage,
+      read: false,
     };
 
-    // Persist to messages.json file safely
-    let messages = [];
-    try {
-      const data = await fs.readFile(MESSAGES_FILE, "utf8");
-      messages = JSON.parse(data);
-    } catch {
-      messages = [];
-    }
-
-    messages.push(newSubmission);
-    await fs.writeFile(
-      MESSAGES_FILE,
-      JSON.stringify(messages, null, 2),
-      "utf8",
-    );
-
-    console.log(
-      `[Contact API] Received new message from ${newSubmission.name} (${newSubmission.email})`,
-    );
+    const messages = await getMessagesCollection();
+    await messages.insertOne(newSubmission);
 
     return res.status(201).json({
       success: true,
@@ -448,9 +451,9 @@ app.post("/api/contact", async (req, res) => {
     });
   } catch (err) {
     console.error("[Contact API Error]", err);
-    return res.status(500).json({
+    return res.status(503).json({
       success: false,
-      error: "Internal server error occurred while processing your message.",
+      error: "Message storage is unavailable. Check the MongoDB connection.",
     });
   }
 });
@@ -467,44 +470,46 @@ const requireInboxKey = (req, res, next) => {
 
 app.get("/api/inbox", requireInboxKey, async (req, res) => {
   try {
-    const data = await fs.readFile(MESSAGES_FILE, "utf8");
-    const messages = JSON.parse(data);
-    return res.json({
-      success: true,
-      data: messages.sort(
-        (first, second) =>
-          new Date(second.timestamp).getTime() -
-          new Date(first.timestamp).getTime(),
-      ),
+    const messages = await getMessagesCollection();
+    const storedMessages = await messages
+      .find({}, { projection: { _id: 0 } })
+      .sort({ timestamp: -1 })
+      .toArray();
+    return res.json({ success: true, data: storedMessages });
+  } catch (err) {
+    console.error("[Inbox API Error]", err);
+    return res.status(503).json({
+      success: false,
+      error: "Inbox storage is unavailable. Check the MongoDB connection.",
     });
-  } catch {
-    return res.json({ success: true, data: [] });
   }
 });
 
 app.patch("/api/inbox/:id", requireInboxKey, async (req, res) => {
   try {
-    const data = await fs.readFile(MESSAGES_FILE, "utf8");
-    const messages = JSON.parse(data);
-    const message = messages.find((item) => item.id === req.params.id);
+    const messages = await getMessagesCollection();
+    const update = await messages.updateOne(
+      { id: req.params.id },
+      { $set: { read: Boolean(req.body.read) } },
+    );
 
-    if (!message) {
+    if (!update.matchedCount) {
       return res
         .status(404)
         .json({ success: false, error: "Message not found." });
     }
 
-    message.read = Boolean(req.body.read);
-    await fs.writeFile(
-      MESSAGES_FILE,
-      JSON.stringify(messages, null, 2),
-      "utf8",
+    const message = await messages.findOne(
+      { id: req.params.id },
+      { projection: { _id: 0 } },
     );
     return res.json({ success: true, data: message });
-  } catch {
-    return res
-      .status(500)
-      .json({ success: false, error: "Unable to update message." });
+  } catch (err) {
+    console.error("[Inbox Update Error]", err);
+    return res.status(503).json({
+      success: false,
+      error: "Inbox storage is unavailable. Check the MongoDB connection.",
+    });
   }
 });
 
@@ -513,10 +518,9 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Start Server
 app.listen(PORT, () => {
   console.log(
-    `🚀 Ghulam Murtaza 3D Portfolio Server is running at http://localhost:${PORT}`,
+    `Ghulam Murtaza 3D Portfolio Server is running at http://localhost:${PORT}`,
   );
-  console.log(`✨ Environment: ${process.env.NODE_ENV || "development"}`);
+  console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
 });
