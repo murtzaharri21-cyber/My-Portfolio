@@ -9,6 +9,20 @@ const Contact = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+
+    if (!name || !message) {
+      setStatus("Please enter your name and message.");
+      return;
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      setStatus("Please enter a valid email address, such as you@example.com.");
+      return;
+    }
+
     setIsSending(true);
     setStatus("");
 
@@ -16,7 +30,7 @@ const Contact = () => {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, name, email, message }),
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Unable to send message.");
@@ -65,9 +79,9 @@ const Contact = () => {
           </div>
           <div className="contact-box">
             <h4>Send a message</h4>
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form" onSubmit={handleSubmit} noValidate>
               <input type="text" placeholder="Your name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required />
-              <input type="email" placeholder="Your email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} required />
+              <input type="email" inputMode="email" placeholder="Your email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} required />
               <input type="text" placeholder="Subject" value={form.subject} onChange={(event) => setForm({ ...form, subject: event.target.value })} />
               <textarea placeholder="Write your message" value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} rows={4} required />
               <button type="submit" disabled={isSending}>{isSending ? "Sending..." : "Send message"}</button>

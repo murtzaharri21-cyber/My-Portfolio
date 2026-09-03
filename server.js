@@ -390,7 +390,11 @@ app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, subject, message, projectType } = req.body;
 
-    if (!name || !email || !message) {
+    const trimmedName = typeof name === "string" ? name.trim() : "";
+    const trimmedEmail = typeof email === "string" ? email.trim() : "";
+    const trimmedMessage = typeof message === "string" ? message.trim() : "";
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
       return res.status(400).json({
         success: false,
         error: "Name, email, and message are required fields.",
@@ -398,7 +402,7 @@ app.post("/api/contact", async (req, res) => {
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(trimmedEmail)) {
       return res.status(400).json({
         success: false,
         error: "Please provide a valid email address.",
@@ -409,11 +413,11 @@ app.post("/api/contact", async (req, res) => {
       id:
         "msg_" + Date.now() + "_" + Math.random().toString(36).substring(2, 7),
       timestamp: new Date().toISOString(),
-      name: name.trim(),
-      email: email.trim(),
+      name: trimmedName,
+      email: trimmedEmail,
       subject: subject ? subject.trim() : "General Inquiry",
       projectType: projectType || "Full-Stack Development & Consulting",
-      message: message.trim(),
+      message: trimmedMessage,
     };
 
     // Persist to messages.json file safely
