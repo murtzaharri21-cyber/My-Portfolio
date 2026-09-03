@@ -15,6 +15,11 @@
   cursor: pointer;
   backdrop-filter: blur(18px);
 }
+.inbox-trigger img {
+  width: 25px;
+  height: 25px;
+  display: block;
+}
 .inbox-trigger span {
   position: absolute;
   top: -4px;
@@ -219,6 +224,10 @@
     height: 40px;
     background: rgba(15, 18, 25, 0.5);
     border-color: rgba(255, 255, 255, 0.2);
+  }
+  .inbox-trigger img {
+    width: 24px;
+    height: 24px;
   }
   .inbox-backdrop {
     padding: 10px;
