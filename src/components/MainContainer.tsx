@@ -53,7 +53,10 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="container-main">
-            <Landing>{isDesktopView ? null : <MobileHero3D />}</Landing>
+            <Landing>
+              {!isDesktopView && <MobileHero3D />}
+              {!isDesktopView && children}
+            </Landing>
             <About />
             <WhatIDo />
             <Career />
