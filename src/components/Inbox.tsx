@@ -17,6 +17,7 @@ interface InboxMessage {
 const Inbox = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [key, setKey] = useState(() => localStorage.getItem("inbox-key") || "");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [messages, setMessages] = useState<InboxMessage[]>([]);
   const [selected, setSelected] = useState<InboxMessage | null>(null);
   const [error, setError] = useState("");
@@ -38,12 +39,18 @@ const Inbox = () => {
     localStorage.setItem("inbox-key", inboxKey);
     setKey(inboxKey);
     setMessages(result.data || []);
+    setIsAuthenticated(true);
     setError("");
   };
 
   useEffect(() => {
     const savedKey = localStorage.getItem("inbox-key");
-    if (savedKey) loadMessages(savedKey).catch(() => localStorage.removeItem("inbox-key"));
+    if (savedKey) {
+      loadMessages(savedKey).catch(() => {
+        localStorage.removeItem("inbox-key");
+        setIsAuthenticated(false);
+      });
+    }
   }, []);
 
   const openMessage = async (message: InboxMessage) => {
@@ -81,7 +88,7 @@ const Inbox = () => {
               <div><span>Private workspace</span><h2>Inbox</h2></div>
               <button type="button" onClick={() => setIsOpen(false)} aria-label="Close inbox"><MdClose /></button>
             </header>
-            {!key || (messages.length === 0 && error) ? (
+            {!isAuthenticated ? (
               <form className="inbox-login" onSubmit={submitKey}>
                 <MdInbox />
                 <h3>Open your messages</h3>
