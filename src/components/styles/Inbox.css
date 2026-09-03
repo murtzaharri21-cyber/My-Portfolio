@@ -248,3 +248,15 @@
     padding: 22px;
   }
 }
+@media (min-width: 900px) and (max-width: 1199px) {
+  .inbox-trigger {
+    top: 20px;
+    right: 96px;
+  }
+}
+@media (min-width: 1200px) {
+  .inbox-trigger {
+    top: 35px;
+    right: clamp(380px, calc((100vw - 94vw) / 2 + 380px), 430px);
+  }
+}
