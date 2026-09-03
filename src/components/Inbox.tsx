@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { MdClose, MdInbox, MdMarkEmailRead } from "react-icons/md";
 import "./styles/Inbox.css";
 
@@ -59,7 +60,7 @@ const Inbox = () => {
 
   const unreadCount = messages.filter((message) => !message.read).length;
 
-  return (
+  return createPortal(
     <>
       <button className="inbox-trigger" type="button" onClick={() => setIsOpen(true)} aria-label="Open inbox">
         <img src="/images/tron-logo.svg" alt="" />
@@ -101,7 +102,8 @@ const Inbox = () => {
           </section>
         </div>
       )}
-    </>
+    </>,
+    document.body,
   );
 };
 
