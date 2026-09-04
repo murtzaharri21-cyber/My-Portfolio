@@ -83,7 +83,7 @@ const Inbox = () => {
     <>
       {!isOpen && (
         <button className="inbox-trigger" type="button" onClick={() => setIsOpen(true)} aria-label="Open inbox">
-          <img src="/images/tron-logo.svg" alt="" />
+          <MdInbox aria-hidden="true" />
           {unreadCount > 0 && <span>{unreadCount}</span>}
         </button>
       )}

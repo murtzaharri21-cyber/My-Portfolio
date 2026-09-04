@@ -36,7 +36,7 @@
   background: transparent;
   cursor: pointer;
 }
-.inbox-dock-trigger img {
+.inbox-dock-trigger > svg {
   width: 25px;
   height: 25px;
 }
@@ -137,7 +137,7 @@ div.resume-button span {
   .social-icons a:hover {
     color: #ffffff;
   }
-  .inbox-dock-trigger img {
+  .inbox-dock-trigger > svg {
     width: 24px;
     height: 24px;
   }

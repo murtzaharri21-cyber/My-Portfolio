@@ -15,7 +15,7 @@
   cursor: pointer;
   backdrop-filter: blur(18px);
 }
-.inbox-trigger img {
+.inbox-trigger > svg {
   width: 25px;
   height: 25px;
   display: block;
@@ -226,7 +226,7 @@
     border-color: rgba(255, 255, 255, 0.2);
     display: none;
   }
-  .inbox-trigger img {
+  .inbox-trigger > svg {
     width: 24px;
     height: 24px;
   }
