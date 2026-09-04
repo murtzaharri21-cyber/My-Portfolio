@@ -25,6 +25,12 @@
   color: var(--backgroundColor);
   /* transform: scale(1.2); */
 }
+.social-icons svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+  fill: currentColor;
+}
 .inbox-dock-trigger {
   display: flex;
   align-items: center;
