@@ -12,6 +12,20 @@ const projects = [
     link: "https://hunzacrafts.vercel.app/",
   },
   {
+    title: "Harry Films",
+    category: "Netflix-Style Movie & Series Streaming Platform",
+    tools: "React, TanStack Router, Node.js, PostgreSQL, Better Auth",
+    image: "https://raw.githubusercontent.com/murtzaharri21-cyber/Harry-Films/main/screenshots/home-interactive.png",
+    link: "https://harry-films.vercel.app",
+  },
+  {
+    title: "Harry Nomad",
+    category: "Travel & Tourism Platform for Hunza & Gilgit-Baltistan",
+    tools: "React, Vite, Supabase, Modern UI",
+    image: "https://raw.githubusercontent.com/murtzaharri21-cyber/Harry-Nomad/main/public/images/hunza-hero-new.png",
+    link: "https://github.com/murtzaharri21-cyber/Harry-Nomad",
+  },
+  {
     title: "OmniMarket AI Suite",
     category: "Full-Stack Market Analytics Platform",
     tools: "Node.js, React, Three.js, MongoDB, Chart.js",
