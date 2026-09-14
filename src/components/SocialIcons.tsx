@@ -2,7 +2,6 @@ import {
   FaGithub,
   FaLinkedinIn,
 } from "react-icons/fa6";
-import { MdInbox } from "react-icons/md";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
@@ -102,16 +101,6 @@ const SocialIcons = () => {
           >
             <FaLinkedinIn />
           </a>
-        </span>
-        <span className="inbox-dock-item">
-          <button
-            className="inbox-dock-trigger"
-            type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent("open-inbox"))}
-            aria-label="Open inbox"
-          >
-            <MdInbox aria-hidden="true" />
-          </button>
         </span>
         <span>
           <a
