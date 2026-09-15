@@ -27,6 +27,16 @@ const Contact = () => {
                 murtzaharry21@gmail.com
               </a>
             </p>
+            <p>
+              <a
+                href="https://wa.me/923469586026"
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="disable"
+              >
+                WhatsApp — 03469586026
+              </a>
+            </p>
             <h4>Education</h4>
             <p>
               BSc Computer Science, Sarhad University Islamabad — 2021–2025
@@ -73,6 +83,15 @@ const Contact = () => {
               className="contact-social"
             >
               Upwork <MdArrowOutward />
+            </a>
+            <a
+              href="https://wa.me/923469586026"
+              target="_blank"
+              rel="noreferrer"
+              data-cursor="disable"
+              className="contact-social"
+            >
+              WhatsApp <MdArrowOutward />
             </a>
           </div>
           <div className="contact-box">

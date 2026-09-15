@@ -2,6 +2,7 @@ import {
   FaGithub,
   FaLinkedinIn,
 } from "react-icons/fa6";
+import { FaWhatsapp } from "react-icons/fa";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
@@ -100,6 +101,16 @@ const SocialIcons = () => {
             rel="noreferrer"
           >
             <FaLinkedinIn />
+          </a>
+        </span>
+        <span>
+          <a
+            href="https://wa.me/923469586026"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Contact Ghulam Murtaza on WhatsApp"
+          >
+            <FaWhatsapp />
           </a>
         </span>
         <span>

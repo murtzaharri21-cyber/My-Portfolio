@@ -3,6 +3,10 @@ declare module "react-icons/fa6" {
   export const FaLinkedinIn: import("react-icons").IconType;
 }
 
+declare module "react-icons/fa" {
+  export const FaWhatsapp: import("react-icons").IconType;
+}
+
 declare module "react-icons/md" {
   export const MdArrowBack: import("react-icons").IconType;
   export const MdArrowForward: import("react-icons").IconType;
