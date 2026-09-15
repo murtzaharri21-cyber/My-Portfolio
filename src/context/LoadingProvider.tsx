@@ -19,12 +19,25 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loading, setLoading] = useState(0);
 
+  useEffect(() => {
+    if (!isLoading) {
+      document.body.style.overflowY = "auto";
+      return;
+    }
+
+    const failSafe = window.setTimeout(() => {
+      setLoading(100);
+      setIsLoading(false);
+    }, 3500);
+
+    return () => window.clearTimeout(failSafe);
+  }, [isLoading]);
+
   const value = {
     isLoading,
     setIsLoading,
     setLoading,
   };
-  useEffect(() => {}, [loading]);
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>

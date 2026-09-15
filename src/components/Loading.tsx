@@ -19,20 +19,31 @@ const Loading = ({ percent }: { percent: number }) => {
       ));
 
   useEffect(() => {
+    const failSafe = window.setTimeout(() => {
+      setLoading(100);
+      setLoaded(true);
+      setIsLoaded(true);
+      setClicked(true);
+      setIsLoading(false);
+    }, 3200);
+
     if (isMobile) {
       document.body.style.overflowY = "auto";
       setLoading(100);
       setLoaded(true);
       setClicked(true);
       setIsLoading(false);
-      return;
+      return () => window.clearTimeout(failSafe);
     }
 
-    if (percent < 100) return;
+    if (percent < 100) return () => window.clearTimeout(failSafe);
 
     setLoaded(true);
     const finishLoading = window.setTimeout(() => setIsLoaded(true), 250);
-    return () => window.clearTimeout(finishLoading);
+    return () => {
+      window.clearTimeout(finishLoading);
+      window.clearTimeout(failSafe);
+    };
   }, [isMobile, percent, setIsLoading, setLoading]);
 
   useEffect(() => {
@@ -40,6 +51,7 @@ const Loading = ({ percent }: { percent: number }) => {
 
     setClicked(true);
     let cancelled = false;
+    document.body.style.overflowY = "auto";
     import("./utils/initialFX")
       .then((module) => {
         if (cancelled) return;

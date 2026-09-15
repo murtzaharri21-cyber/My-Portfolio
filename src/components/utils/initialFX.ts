@@ -4,13 +4,21 @@ import { smoother } from "../Navbar";
 
 export function initialFX() {
   document.body.style.overflowY = "auto";
+  document.body.style.overflowX = "hidden";
 
-  if (smoother) {
+  if (smoother && typeof smoother.paused === "function") {
     smoother.paused(false);
   }
 
   const mainElement = document.getElementsByTagName("main")[0];
   mainElement?.classList.add("main-active");
+
+  const landingSections = document.querySelectorAll(
+    ".landing-info h3, .landing-intro h2, .landing-intro h1, .landing-h2-info, .landing-info-h2, .header, .icons-section, .nav-fade"
+  );
+  if (!landingSections.length) {
+    return;
+  }
 
   gsap.to("body", {
     backgroundColor: "#0a0e17",

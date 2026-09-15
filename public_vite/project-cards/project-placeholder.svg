@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" role="img" aria-label="Project placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <rect x="120" y="110" width="1160" height="680" rx="28" fill="#111827" stroke="#1f2937"/>
+  <rect x="180" y="180" width="1040" height="76" rx="16" fill="url(#panel)" opacity="0.18"/>
+  <rect x="180" y="300" width="500" height="34" rx="12" fill="#d1fae5" opacity="0.85"/>
+  <rect x="180" y="360" width="720" height="24" rx="10" fill="#cbd5e1" opacity="0.8"/>
+  <rect x="180" y="405" width="680" height="22" rx="10" fill="#cbd5e1" opacity="0.6"/>
+  <rect x="180" y="450" width="620" height="22" rx="10" fill="#cbd5e1" opacity="0.5"/>
+  <rect x="980" y="300" width="200" height="210" rx="18" fill="#0f172a" stroke="#4ade80" opacity="0.9"/>
+  <circle cx="1080" cy="375" r="56" fill="none" stroke="#67e8f9" stroke-width="20" opacity="0.8"/>
+  <path d="M 1040 375 L 1070 405 L 1120 330" fill="none" stroke="#67e8f9" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <text x="700" y="690" text-anchor="middle" font-size="54" font-family="Arial, Helvetica, sans-serif" fill="#f8fafc" letter-spacing="2">PROJECT PREVIEW</text>
+</svg>

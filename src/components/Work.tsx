@@ -8,52 +8,22 @@ const projects = [
     title: "Hunza Crafts",
     category: "E-Commerce Platform for Artisan Crafts",
     tools: "React.js, Node.js, Vercel, REST APIs, Modern UI",
-    image: "https://fjzmbemfhtmydrycvrds.supabase.co/storage/v1/object/public/catalog/images/defaults/hero.jpg",
+    image: "/project-cards/hunza-crafts.png",
     link: "https://hunzacrafts.vercel.app/",
   },
   {
     title: "Harry Films",
     category: "Full-Stack Movie Discovery & Streaming Platform",
     tools: "React, TypeScript, Vite, Node.js, Vercel, REST APIs",
-    image: "https://harry-films.vercel.app/posters/hailmary.jpg",
+    image: "/project-cards/harry-films.png",
     link: "https://harry-films.vercel.app/",
   },
   {
     title: "Harry Nomad",
     category: "Travel Agency Website for Tour & Destination Discovery",
     tools: "HTML5, CSS3, JavaScript, Vite, Responsive UI, Travel Branding",
-    image: "https://harrynomad.vercel.app/images/hunza-real.jpg",
+    image: "/project-cards/harry-nomad.png",
     link: "https://harrynomad.vercel.app/",
-  },
-  {
-    title: "OmniMarket AI Suite",
-    category: "Full-Stack Market Analytics Platform",
-    tools: "Node.js, React, Three.js, MongoDB, Chart.js",
-    image: "https://i.imgflip.com/81jar4.jpg",
-    link: "https://omnimarket.ai/",
-  },
-  {
-    title: "HyperTrade Commerce Engine",
-    category: "MERN Stack Cross-Border E-Commerce",
-    tools: "React.js, Node.js, Express, MongoDB, Stripe API",
-    image:
-      "https://public.atom.com/story_images/visual_images/logo-image-20771-hypertrade.jpg?class=show",
-    link: "https://www.hypertrade.com/",
-  },
-  {
-    title: "SinoConnect B2B Hub",
-    category: "Cross-Cultural Business Intelligence Portal",
-    tools: "Node.js, Express, REST APIs, HSK-4 Mandarin",
-    image:
-      "https://forsale.spaceship-cdn.com/static/latest/3.latest/assets/images/bg-1_dark.svg",
-    link: "https://www.sinoconnect.com/",
-  },
-  {
-    title: "VentureStrat GTM Simulator",
-    category: "Startup Financial Modeling & Market Penetration Tool",
-    tools: "JavaScript, HTML5 Canvas, Node.js, Data Modeling",
-    image: "https://www.venturestrat.ai/_next/image?url=%2Finvestor-directory-preview-image.png&w=1080&q=75",
-    link: "https://venturestrat.ai/",
   },
 ];
 

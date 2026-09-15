@@ -1,56 +1,7 @@
-import { FormEvent, useState } from "react";
 import { MdArrowOutward, MdCopyright } from "react-icons/md";
 import "./styles/Contact.css";
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState("");
-  const [isSending, setIsSending] = useState(false);
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const name = form.name.trim();
-    const email = form.email.trim();
-    const message = form.message.trim();
-
-    if (!name || !message) {
-      setStatus("Please enter your name and message.");
-      return;
-    }
-
-    if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setStatus("Please enter a valid email address, such as you@example.com.");
-      return;
-    }
-
-    setIsSending(true);
-    setStatus("");
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, name, email, message }),
-      });
-      const responseText = await response.text();
-      let result: { error?: string } = {};
-      if (responseText) {
-        try {
-          result = JSON.parse(responseText) as { error?: string };
-        } catch {
-          throw new Error("The server returned an invalid response. Please try again.");
-        }
-      }
-      if (!response.ok) throw new Error(result.error || "Unable to send message.");
-      setStatus("Message sent successfully.");
-      setForm({ name: "", email: "", subject: "", message: "" });
-    } catch (error) {
-      setStatus(error instanceof Error ? error.message : "Unable to send message.");
-    } finally {
-      setIsSending(false);
-    }
-  };
-
   return (
     <div className="contact-section section-container" id="contact">
       <div className="contact-container">
@@ -84,17 +35,6 @@ const Contact = () => {
               Chinese Language Studies, NUML University — 2020–2021
             </p>
             <p>HSK-4 Certified (Fluent Mandarin Chinese)</p>
-          </div>
-          <div className="contact-box">
-            <h4>Send a message</h4>
-            <form className="contact-form" onSubmit={handleSubmit} noValidate>
-              <input type="text" placeholder="Your name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required />
-              <input type="email" inputMode="email" placeholder="Your email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} required />
-              <input type="text" placeholder="Subject" value={form.subject} onChange={(event) => setForm({ ...form, subject: event.target.value })} />
-              <textarea placeholder="Write your message" value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} rows={4} required />
-              <button type="submit" disabled={isSending}>{isSending ? "Sending..." : "Send message"}</button>
-              {status && <p className="contact-form-status">{status}</p>}
-            </form>
           </div>
           <div className="contact-box">
             <h4>Social</h4>
