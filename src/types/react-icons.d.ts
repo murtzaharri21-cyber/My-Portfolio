@@ -1,18 +1,18 @@
 declare module "react-icons/fa6" {
-  export const FaGithub: any;
-  export const FaLinkedinIn: any;
+  export const FaGithub: import("react-icons").IconType;
+  export const FaLinkedinIn: import("react-icons").IconType;
 }
 
 declare module "react-icons/md" {
-  export const MdArrowBack: any;
-  export const MdArrowForward: any;
-  export const MdArrowOutward: any;
-  export const MdClose: any;
-  export const MdCopyright: any;
-  export const MdInbox: any;
-  export const MdMarkEmailRead: any;
+  export const MdArrowBack: import("react-icons").IconType;
+  export const MdArrowForward: import("react-icons").IconType;
+  export const MdArrowOutward: import("react-icons").IconType;
+  export const MdClose: import("react-icons").IconType;
+  export const MdCopyright: import("react-icons").IconType;
+  export const MdInbox: import("react-icons").IconType;
+  export const MdMarkEmailRead: import("react-icons").IconType;
 }
 
 declare module "react-icons/tb" {
-  export const TbNotes: any;
+  export const TbNotes: import("react-icons").IconType;
 }

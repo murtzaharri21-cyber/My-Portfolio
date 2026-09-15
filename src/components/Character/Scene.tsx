@@ -44,7 +44,7 @@ const Scene = () => {
       camera.updateProjectionMatrix();
 
       let headBone: THREE.Object3D | null = null;
-      let screenLight: any | null = null;
+      let screenLight: THREE.Mesh<THREE.BufferGeometry, THREE.MeshStandardMaterial> | null = null;
       let mixer: THREE.AnimationMixer;
 
       const clock = new THREE.Clock();
@@ -56,20 +56,23 @@ const Scene = () => {
       loadCharacter().then((gltf) => {
         if (gltf) {
           const animations = setAnimations(gltf);
-          hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
+          if (hoverDivRef.current) {
+            animations.hover(gltf, hoverDivRef.current);
+          }
           mixer = animations.mixer;
           const character = gltf.scene;
           setChar(character);
           scene.add(character);
           headBone = character.getObjectByName("spine006") || null;
-          screenLight = character.getObjectByName("screenlight") || null;
+          const screenLightObject = character.getObjectByName("screenlight");
+          screenLight = screenLightObject instanceof THREE.Mesh
+            ? screenLightObject as THREE.Mesh<THREE.BufferGeometry, THREE.MeshStandardMaterial>
+            : null;
           progress.loaded().then(() => {
             light.turnOnLights();
             animations.startIntro();
           });
-          window.addEventListener("resize", () =>
-            handleResize(renderer, camera, canvasDiv, character)
-          );
+          window.addEventListener("resize", onResize);
         }
       });
 
@@ -96,9 +99,8 @@ const Scene = () => {
         });
       };
 
-      document.addEventListener("mousemove", (event) => {
-        onMouseMove(event);
-      });
+      const onResize = () => handleResize(renderer, camera, canvasDiv, character!);
+      document.addEventListener("mousemove", onMouseMove);
       const landingDiv = document.getElementById("landingDiv");
       if (landingDiv) {
         landingDiv.addEventListener("touchstart", onTouchStart);
@@ -128,9 +130,7 @@ const Scene = () => {
         clearTimeout(debounce);
         scene.clear();
         renderer.dispose();
-        window.removeEventListener("resize", () =>
-          handleResize(renderer, camera, canvasDiv, character!)
-        );
+        window.removeEventListener("resize", onResize);
         if (canvasDiv.current) {
           canvasDiv.current.removeChild(renderer.domElement);
         }

@@ -1,7 +1,7 @@
 import HoverLinks from "./HoverLinks";
 import "./styles/Navbar.css";
 
-export let smoother: any = null;
+export const smoother: { paused: (value: boolean) => void } | null = null;
 
 const Navbar = () => {
   return (

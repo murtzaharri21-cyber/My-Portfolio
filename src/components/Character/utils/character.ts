@@ -13,25 +13,21 @@ const setCharacter = (
   dracoLoader.setDecoderPath("/draco/");
   loader.setDRACOLoader(dracoLoader);
 
-  const loadCharacter = () => {
-    return new Promise<GLTF | null>(async (resolve, reject) => {
-      try {
-        const encryptedBlob = await decryptFile(
-          "/models/character.enc?v=2",
-          "MyCharacter12"
-        );
-        const blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
+  const loadCharacter = async () => {
+    const encryptedBlob = await decryptFile(
+      "/models/character.enc?v=2",
+      "MyCharacter12"
+    );
+    const blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
 
-        let character: THREE.Object3D;
-        loader.load(
-          blobUrl,
-          async (gltf) => {
-            character = gltf.scene;
-            await renderer.compileAsync(character, camera, scene);
-            character.traverse((child: any) => {
-              if (child.isMesh) {
-                const mesh = child as THREE.Mesh;
-
+    return new Promise<GLTF>((resolve, reject) => {
+      const handleLoad = async (gltf: GLTF) => {
+        try {
+          const character = gltf.scene;
+          await renderer.compileAsync(character, camera, scene);
+          character.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+              const mesh = child;
                 // Change clothing colors to match site theme
                 if (mesh.material) {
                   if (mesh.name === "BODY.SHIRT") { // The shirt mesh
@@ -48,28 +44,22 @@ const setCharacter = (
                 child.castShadow = true;
                 child.receiveShadow = true;
                 mesh.frustumCulled = true;
-              }
-            });
-            resolve(gltf);
-            setCharTimeline(character, camera);
-            setAllTimeline();
-            character!.getObjectByName("footR")!.position.y = 3.36;
-            character!.getObjectByName("footL")!.position.y = 3.36;
+            }
+          });
+          resolve(gltf);
+          setCharTimeline(character, camera);
+          setAllTimeline();
+          character.getObjectByName("footR")!.position.y = 3.36;
+          character.getObjectByName("footL")!.position.y = 3.36;
 
             // Monitor scale is handled by GsapScroll.ts animations
 
-            dracoLoader.dispose();
-          },
-          undefined,
-          (error) => {
-            console.error("Error loading GLTF model:", error);
-            reject(error);
-          }
-        );
-      } catch (err) {
-        reject(err);
-        console.error(err);
-      }
+          dracoLoader.dispose();
+        } catch (error) {
+          reject(error);
+        }
+      };
+      loader.load(blobUrl, handleLoad, undefined, reject);
     });
   };
 
