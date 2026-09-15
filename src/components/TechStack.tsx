@@ -126,6 +126,8 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
 
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
+  const isMobile =
+    typeof window !== "undefined" && window.matchMedia("(max-width: 600px)").matches;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -173,7 +175,7 @@ const TechStack = () => {
       <Canvas
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
+        camera={{ position: [0, 0, isMobile ? 30 : 20], fov: isMobile ? 40 : 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
         className="tech-canvas"
       >
@@ -189,10 +191,11 @@ const TechStack = () => {
         <directionalLight position={[0, 5, -4]} intensity={2} />
         <Physics gravity={[0, 0, 0]}>
           <Pointer isActive={isActive} />
-          {spheres.map((props, i) => (
+          {(isMobile ? spheres.slice(0, 16) : spheres).map((props, i) => (
             <SphereGeo
               key={i}
               {...props}
+              scale={isMobile ? props.scale * 0.7 : props.scale}
               material={materials[Math.floor(Math.random() * materials.length)]}
               isActive={isActive}
             />
