@@ -15,23 +15,11 @@ const TechStack = lazy(() => import("./TechStack"));
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(() => {
     if (typeof window === "undefined") return false;
-    return (
-      window.innerWidth > 1024 &&
-      !window.matchMedia("(pointer: coarse)").matches
-    );
+    return window.innerWidth > 1024;
   });
 
   useEffect(() => {
     const resizeHandler = () => {
-      const isTouchDevice =
-        window.matchMedia("(pointer: coarse)").matches ||
-        window.innerWidth <= 1024;
-
-      if (isTouchDevice) {
-        setIsDesktopView(false);
-        return;
-      }
-
       setSplitText();
       setIsDesktopView(window.innerWidth > 1024);
     };
