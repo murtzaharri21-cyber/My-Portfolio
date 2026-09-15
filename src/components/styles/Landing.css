@@ -492,8 +492,7 @@ h2.landing-info-h2 {
 }
 
 .landing-h2-2 {
-  position: absolute;
-  top: 0;
+  position: static;
 }
 
 .landing-info-h2::after {
@@ -518,10 +517,6 @@ h2.landing-info-h2 {
     width: auto;
     margin-left: 0;
     line-height: 1.05;
-  }
-
-  .landing-h2-2 {
-    position: static;
   }
 
   .landing-info-h2::after,
