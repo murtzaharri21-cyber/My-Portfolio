@@ -136,4 +136,17 @@ body {
   .techstack h2 {
     font-size: 40px;
   }
+
+  .techstack {
+    height: 70svh;
+    min-height: 460px;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  .techstack h2 {
+    top: 70px;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
 }
