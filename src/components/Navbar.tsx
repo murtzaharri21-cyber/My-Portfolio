@@ -14,8 +14,6 @@ const Navbar = () => {
           href="mailto:murtzaharry21@gmail.com"
           className="navbar-connect"
           data-cursor="disable"
-          target="_blank"
-          rel="noreferrer"
         >
           murtzaharry21@gmail.com
         </a>
