@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import "./App.css";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const CharacterModel = lazy(() => import("./components/Character"));
 const MainContainer = lazy(() => import("./components/MainContainer"));
@@ -19,6 +20,7 @@ const App = () => {
         </Suspense>
       </LoadingProvider>
       <Analytics />
+      <SpeedInsights />
     </>
   );
 };
