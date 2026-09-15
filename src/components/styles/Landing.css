@@ -554,7 +554,7 @@ h2.landing-info-h2 {
   }
 
   .landing-info-h2::after,
-  .landing-info > h2:last-child {
+  .landing-info > h2:last-child .landing-h2-info-1 {
     display: none;
   }
 }
@@ -653,6 +653,28 @@ h2.landing-info-h2 {
 
   h2.landing-info-h2 {
     font-size: 55px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .character-model {
+    height: min(72svh, 680px);
+    width: 68%;
+    left: 100%;
+  }
+
+  .landing-info {
+    top: 52%;
+    bottom: auto;
+    right: 5%;
+    width: 34%;
+    transform: translateY(-50%);
+  }
+
+  .landing-info h2.landing-info-h2 {
+    width: 100%;
+    font-size: clamp(2.1rem, 4.7vw, 3.3rem);
+    line-height: 0.95;
   }
 }
 
