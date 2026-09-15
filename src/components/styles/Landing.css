@@ -497,18 +497,7 @@ h2.landing-info-h2 {
 }
 
 .landing-info-h2::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 120%;
-  z-index: 3;
-  background-image: linear-gradient(
-    0deg,
-    var(--backgroundColor) 40%,
-    rgba(0, 0, 0, 0) 110%
-  );
-  top: 0;
-  left: 0;
+  display: none;
 }
 
 @media screen and (max-width: 1024px) {
@@ -520,9 +509,6 @@ h2.landing-info-h2 {
     line-height: 1.05;
   }
 
-  .landing-info-h2::after {
-    display: none;
-  }
 }
 
 @media screen and (min-width: 500px) {
@@ -612,7 +598,8 @@ h2.landing-info-h2 {
     text-align: left;
     transform: translate(0%, -50%);
     right: auto;
-    left: 66%;
+    left: 60%;
+    width: min(30vw, 380px);
   }
 }
 
@@ -628,7 +615,8 @@ h2.landing-info-h2 {
     bottom: auto;
     top: 51%;
     transform: translate(0%, -50%);
-    left: 70%;
+    left: 64%;
+    width: min(30vw, 460px);
   }
 }
 
