@@ -4,10 +4,12 @@
   margin: auto;
   position: relative;
   height: var(--vh);
+  min-height: 560px;
+  overflow: hidden;
 }
 
 .landing-container {
-  width: var(--cWidth);
+  width: min(var(--cWidth), 1440px);
   margin: auto;
   height: 100%;
   position: relative;
@@ -108,13 +110,12 @@
 }
 
 .character-model {
-  height: 80%;
-  height: 80vh;
+  height: min(80vh, 900px);
   position: absolute;
   max-width: 1920px;
   max-height: 1080px;
   transform: translateX(-50%);
-  width: 100%;
+  width: min(100%, 1920px);
   left: 50%;
   z-index: 0;
   bottom: 50px;
@@ -513,6 +514,37 @@ h2.landing-info-h2 {
 }
 
 @media screen and (max-width: 1024px) {
+  .landing-section {
+    min-height: 640px;
+  }
+
+  .landing-container {
+    width: calc(100% - 32px);
+  }
+
+  .character-model {
+    height: min(72svh, 680px);
+    width: 100%;
+    bottom: 0;
+  }
+
+  .landing-intro {
+    top: 16%;
+    left: 6%;
+    width: 40%;
+    max-width: 320px;
+  }
+
+  .landing-info {
+    top: 50%;
+    right: 6%;
+    left: auto;
+    width: 40%;
+    max-width: 360px;
+    transform: translateY(-50%);
+    text-align: left;
+  }
+
   h2.landing-info-h2 {
     display: flex;
     flex-direction: column;
@@ -524,6 +556,43 @@ h2.landing-info-h2 {
   .landing-info-h2::after,
   .landing-info > h2:last-child {
     display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .landing-section {
+    min-height: 680px;
+  }
+
+  .landing-container {
+    width: calc(100% - 24px);
+  }
+
+  .character-model {
+    height: min(58svh, 500px);
+  }
+
+  .landing-intro,
+  .landing-info {
+    left: 50%;
+    right: auto;
+    width: min(88vw, 340px);
+    max-width: none;
+    text-align: center;
+    transform: translateX(-50%);
+  }
+
+  .landing-intro {
+    top: 12%;
+  }
+
+  .landing-info {
+    top: auto;
+    bottom: 7%;
+  }
+
+  .landing-info h2.landing-info-h2 {
+    align-items: center;
   }
 }
 
@@ -589,7 +658,7 @@ h2.landing-info-h2 {
 
 @media screen and (min-width: 1025px) {
   .character-model {
-    height: 100vh;
+    height: min(100svh, 1080px);
     bottom: 0;
     z-index: 11;
     position: fixed;
