@@ -145,11 +145,8 @@ body {
   }
 
   .techstack h2 {
-    top: 104px;
-    z-index: 2;
-    font-size: clamp(32px, 10vw, 40px);
+    top: 70px;
     padding: 0 20px;
     box-sizing: border-box;
-    pointer-events: none;
   }
 }
