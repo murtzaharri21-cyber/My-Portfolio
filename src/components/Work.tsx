@@ -25,6 +25,13 @@ const projects = [
     image: "/project-cards/harry-nomad.png",
     link: "https://harrynomad.vercel.app/",
   },
+  {
+    title: "Putok",
+    category: "Home-Made Hunza Bread Storefront & Online Ordering",
+    tools: "Next.js, React, TypeScript, Three.js, Supabase, Vercel",
+    image: "/project-cards/putok.png",
+    link: "https://putok.vercel.app/",
+  },
 ];
 
 const Work = () => {
