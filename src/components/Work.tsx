@@ -32,6 +32,13 @@ const projects = [
     image: "/project-cards/putok.png",
     link: "https://putok.vercel.app/",
   },
+  {
+    title: "Xiks Collection",
+    category: "Men's Premium Wear E-Commerce Storefront",
+    tools: "Product Catalog, Order Tracking, Instagram DM Ordering, Responsive UI",
+    image: "/project-cards/xiks-collection.png",
+    link: "https://xikscollection.vercel.app/",
+  },
 ];
 
 const Work = () => {
