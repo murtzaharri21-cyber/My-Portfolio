@@ -36,13 +36,15 @@
 
 .carousel-track {
   display: flex;
+  width: 100%;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
 .carousel-slide {
-  min-width: 100%;
-  flex-shrink: 0;
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 0;
   box-sizing: border-box;
   padding: 50px 0;
 }
@@ -56,6 +58,7 @@
 
 .carousel-info {
   flex: 1;
+  min-width: 0;
   display: flex;
   gap: 30px;
   align-items: flex-start;
@@ -109,6 +112,7 @@
 
 .carousel-image-wrapper {
   flex: 1;
+  min-width: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -366,7 +370,6 @@
 
   .carousel-slide {
     width: 100%;
-    min-width: 100%;
     padding: 24px 16px 32px;
   }
 
